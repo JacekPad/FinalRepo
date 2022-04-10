@@ -437,4 +437,6 @@
                 <script> var ps = new PerfectScrollbar('#sidebar');</script>
                 <script src="<c:url value="/resources/js/custom.js"/>"></script>
                 <script src="<c:url value="/resources/js/chart_custom_style1.js"/>"></script>
+                <script src="<c:url value="/resources/bootstrap.bundle.min.js"/>"></script>
+
 <jsp:include page="/WEB-INF/views/constants/footer.jsp"/>

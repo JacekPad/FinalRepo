@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class testControllerDELETE {
 
 
-    @GetMapping("test")
+    @GetMapping("/test")
     public String testmain() {
         return "testDELETE";
     }

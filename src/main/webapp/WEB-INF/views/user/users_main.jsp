@@ -3,23 +3,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- mobile metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <!-- site metas -->
     <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- site icon -->
     <link rel="icon" href="images/fevicon.png" type="image/png"/>
-    <!-- bootstrap css -->
-    <%--    <link rel="stylesheet" href="css/bootstrap.min.css" />--%>
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
-    <!-- site css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/css/flaticon.css"/>" type="text/css"/>
     <link rel="stylesheet" href="<c:url value="/resources/css/animate.css"/>" type="text/css"/>
@@ -437,4 +430,6 @@
                 <script> var ps = new PerfectScrollbar('#sidebar');</script>
                 <script src="<c:url value="/resources/js/custom.js"/>"></script>
                 <script src="<c:url value="/resources/js/chart_custom_style1.js"/>"></script>
+                <script src="<c:url value="/resources/bootstrap.bundle.min.js"/>"></script>
+
 <jsp:include page="/WEB-INF/views/constants/footer.jsp"/>
