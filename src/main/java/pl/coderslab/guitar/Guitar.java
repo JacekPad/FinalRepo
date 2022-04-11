@@ -1,9 +1,13 @@
 package pl.coderslab.guitar;
 
+import lombok.Data;
+import pl.coderslab.user.User;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Data
 public class Guitar {
 
 
@@ -13,11 +17,16 @@ public class Guitar {
 
     private String name;
     private String type;
+    private LocalDate created;
 
     @ManyToOne
     private GuitarStrings strings;
-    private String stringSize;
+    @ManyToOne
+    private User user;
 
+    private Integer stringFreq;
     private LocalDate stringChange;
+
+    private Integer maintenanceFreq;
     private LocalDate maintenanceDate;
 }
