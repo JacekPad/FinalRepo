@@ -82,63 +82,63 @@
                                                 <td>
                                                     <div class="d-flex flex-row justify-content-md-between w-50">
                                                         <div>
-                                                    <a href="/update">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
+                                                            <a href="/update">
+                                                                <i class="fa fa-pencil"></i>
+                                                            </a>
                                                         </div>
                                                         <div>
-                                                    <a href="/remove">
-                                                        <i class="fa fa-trash"></i>
-                                                    </a>
+                                                            <a href="/remove">
+                                                                <i class="fa fa-trash"></i>
+                                                            </a>
                                                         </div>
                                                         <div>
-                                                        <button type="button"
-                                                            class="btn accordion-button collapsed fa fa-plus fa-border"
-                                                            data-bs-toggle="collapse"
-                                                            data-bs-target="#collapseOne"></button>
+                                                            <button type="button"
+                                                                    class="btn accordion-button collapsed fa fa-plus fa-border"
+                                                                    data-bs-toggle="collapse"
+                                                                    data-bs-target="#collapseOne"></button>
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                            <td colspan="3">
-                                                <div id="collapseOne" class="accordion-collapse collapse"
-                                                     data-bs-parent="#myAccordion">
-                                                    <div class="card-body">
-                                                        <div class="d-flex flex-row justify-content-md-start padding-bottom_1">
-                                                            <div class="p-3">{Guitar name}</div>
-                                                            <div class="p-3">{Guitar type}</div>
-                                                        </div>
-                                                        <div class="d-flex flex-row justify-content-md-start">
-                                                            <div class="d-flex flex-row">
-                                                                <span class="p-3">Strings brand:</span>
-                                                                <span class="p-3">{string brand}</span>
+                                                <td colspan="3">
+                                                    <div id="collapseOne" class="accordion-collapse collapse"
+                                                         data-bs-parent="#myAccordion">
+                                                        <div class="card-body">
+                                                            <div class="d-flex flex-row justify-content-md-start padding-bottom_1">
+                                                                <div class="p-3">{Guitar name}</div>
+                                                                <div class="p-3">{Guitar type}</div>
                                                             </div>
-                                                            <div class="d-flex flex-row">
-                                                                <span class="p-3">Strings size:</span>
-                                                                <span class="p-3">{String size}</span>
+                                                            <div class="d-flex flex-row justify-content-md-start">
+                                                                <div class="d-flex flex-row">
+                                                                    <span class="p-3">Strings brand:</span>
+                                                                    <span class="p-3">{string brand}</span>
+                                                                </div>
+                                                                <div class="d-flex flex-row">
+                                                                    <span class="p-3">Strings size:</span>
+                                                                    <span class="p-3">{String size}</span>
+                                                                </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div class="d-flex flex-row justify-content-md-start">
-                                                            <div class="d-flex flex-row">
-                                                                <span class="p-3">String change:</span>
-                                                                <span class="p-3">{xx-yy-zzzz}</span>
-                                                                <a class="blue1_color p-3" href="#">Update string change
-                                                                    <i class="fa fa-refresh"></i>
-                                                                </a>
-                                                                <span class="p-3">Guitar maintenance:</span>
-                                                                <span class="p-3">{xx-yy-zzzz}</span>
-                                                                <a class="blue1_color p-3" href="#">Update guitar maintenance
-                                                                    <i class="fa fa-refresh"></i>
-                                                                </a>
+                                                            <div class="d-flex flex-row justify-content-md-start">
+                                                                <div class="d-flex flex-row">
+                                                                    <span class="p-3">String change:</span>
+                                                                    <span class="p-3">{xx-yy-zzzz}</span>
+                                                                    <a class="blue1_color p-3" href="#">Update string change
+                                                                        <i class="fa fa-refresh"></i>
+                                                                    </a>
+                                                                    <span class="p-3">Guitar maintenance:</span>
+                                                                    <span class="p-3">{xx-yy-zzzz}</span>
+                                                                    <a class="blue1_color p-3" href="#">Update guitar maintenance
+                                                                        <i class="fa fa-refresh"></i>
+                                                                    </a>
+                                                                </div>
                                                             </div>
+
                                                         </div>
 
                                                     </div>
-
-                                                </div>
-                                            </td>
+                                                </td>
                                             </tr>
 
 

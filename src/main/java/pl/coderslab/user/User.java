@@ -9,7 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
-import java.util.List;
+
 
 @Entity
 @Setter
@@ -34,8 +34,8 @@ public class User {
 
     private LocalDate created;
 
-    @OneToMany
-    private List<Guitar> guitars;
+//    @OneToMany
+//    private List<Guitar> guitars;
 
     @PrePersist
     public void prePersist() {
