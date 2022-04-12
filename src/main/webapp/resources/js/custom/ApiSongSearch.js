@@ -12,6 +12,9 @@ searchButton.addEventListener("click", function (e) {
         return resp.json();
     }).then(obj => {
 
+        while (tableBody.firstChild) {
+            tableBody.removeChild(tableBody.firstChild);
+        }
         for (let i = 0; i < 10; i++) {
             let title = obj[i].title;
             let artist = obj[i].artist.name;
@@ -42,7 +45,6 @@ searchButton.addEventListener("click", function (e) {
             buttonDiv.appendChild(button);
             selectButtonRow.appendChild(buttonDiv);
             tableRow.appendChild(selectButtonRow);
-
             tableBody.appendChild(tableRow);
         }
 
@@ -50,6 +52,10 @@ searchButton.addEventListener("click", function (e) {
         selectButtons.forEach(function (e) {
             e.addEventListener("click", function (e) {
                 e.preventDefault();
+                if(apiContent.firstChild){
+                    apiContent.removeChild(apiContent.firstChild);
+                }
+
                 let src = "http://www.songsterr.com/a/wa/song?id=" + this.dataset.id;
                 let iframe = document.createElement("iframe");
                 iframe.width = "100%";
