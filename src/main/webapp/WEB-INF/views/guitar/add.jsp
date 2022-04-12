@@ -69,7 +69,6 @@
                                             Maintenance frequency in months:
                                             <form:select cssClass="form-control" items="${maintenanceMonths}" path="guitar.maintenanceFreq"/> <br>
 
-<%--                                            <input type="submit" value="Send">--%>
                                     </div>
                                     <div class="col-md-6">
                                         Strings brand:
