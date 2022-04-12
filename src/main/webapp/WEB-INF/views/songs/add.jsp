@@ -91,16 +91,17 @@
                                                         <form>
                                                             <label>
                                                                 Artist/Band:
-                                                                <input class="form-control" type="text"
+                                                                <input id="apiArtist" class="form-control" type="text"
                                                                        name="artistName"
                                                                        placeholder="Artist/Band name">
                                                             </label>
                                                             <label>
                                                                 Song name:
-                                                                <input class="form-control" type="text" name="songName"
+                                                                <input id="apiName" class="form-control" type="text"
+                                                                       name="songName"
                                                                        placeholder="Song name">
                                                             </label>
-                                                            <button id="shit" class="btn btn-info" type="submit">
+                                                            <button id="apiSearch" class="btn btn-info" type="submit">
                                                                 <i class="fa fa-search"></i>
                                                                 Search
                                                             </button>
@@ -115,42 +116,7 @@
                                                                 <th class="col-sm-2">Actions</th>
                                                             </tr>
                                                             </thead>
-                                                            <tbody>
-                                                            <tr>
-                                                                <td>dfsa</td>
-                                                                <td>sadas</td>
-                                                                <td>
-                                                                    <div class="d-flex flex-row justify-content-md-between">
-                                                                        <div>
-                                                                            <button type="submit"
-                                                                                    class="btn cur-p btn-outline-primary">
-                                                                                Select
-                                                                            </button>
-                                                                        </div>
-
-
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-
-                                                                <%--                                                            DELETE THIS--%>
-                                                            <tr>
-                                                                <td>dfsa</td>
-                                                                <td>sadas</td>
-                                                                <td>
-                                                                    <div class="d-flex flex-row justify-content-md-between">
-                                                                        <div>
-                                                                            <button type="submit"
-                                                                                    class="btn cur-p btn-outline-primary">
-                                                                                Select
-                                                                            </button>
-                                                                        </div>
-
-
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                                <%--                                                            ^ THIS--%>
+                                                            <tbody id="tableBody">
                                                             </tbody>
                                                         </table>
 
@@ -178,7 +144,8 @@
                                                                 <input class="form-control" type="text" name="songName"
                                                                        placeholder="Song name">
                                                             </label>
-                                                            <button id="uploadButton" class="btn btn-info" type="submit">
+                                                            <button id="uploadButton" class="btn btn-info"
+                                                                    type="submit">
                                                                 <i class="fa fa-upload"></i>
                                                                 Upload
                                                             </button>
@@ -188,8 +155,8 @@
                                             </div>
                                         </div>
                                         <div class="p-3">
-                                            <div>
-                                                API / UPLOAD CONTENT HERE
+                                            <div id="apiContent">
+                                                API PREVIEW:
                                             </div>
                                         </div>
                                     </div>
@@ -218,5 +185,6 @@
                 <script src="<c:url value="/resources/js/chart_custom_style1.js"/>"></script>
                 <script src="<c:url value="/resources/bootstrap.bundle.min.js"/>"></script>
                 <script src="<c:url value="/resources/js/custom/radioboxShowHide.js"/>"></script>
+                <script src="<c:url value="/resources/js/custom/ApiSongSearch.js"/>"></script>
 
 <jsp:include page="/WEB-INF/views/constants/footer.jsp"/>
