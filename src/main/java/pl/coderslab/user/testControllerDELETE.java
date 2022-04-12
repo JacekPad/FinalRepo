@@ -34,7 +34,7 @@ public class testControllerDELETE {
 
     @GetMapping("/song")
     public String songsMain() {
-        return "songs/songs_main";
+        return "main";
     }
 
 

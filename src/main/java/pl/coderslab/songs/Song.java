@@ -17,6 +17,8 @@ public class Song {
     private String name;
     private String author;
     private String url;
+    private String fileOrSomething;
+    private String guitarType;
     @ManyToMany
 //    ManyToMany czy manyToOne?
 //    User moze miec pare piosenek, kilka userow moze miec zapisana ta sama piosenke po API?

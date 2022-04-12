@@ -7,7 +7,10 @@
 <body>
 <h1><spring:message code="app.title"/> </h1>
 
-<a href="${pageContext.request.contextPath}/user/list"><spring:message code="app.userlist"/></a>
+<a href="${pageContext.request.contextPath}/user/list"><spring:message code="app.userlist"/></a> <br>
+<a href="${pageContext.request.contextPath}/user/guitars/list">GUITARS</a> <br>
+<a href="${pageContext.request.contextPath}/user/songs/list">SONGS</a> <br>
+
 
 </body>
 </html>
