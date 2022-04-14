@@ -11,12 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <title>Guitar Journal</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- site icon -->
-    <link rel="icon" href="images/fevicon.png" type="image/png"/>
     <!-- bootstrap css -->
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
     <!-- site css -->
@@ -52,8 +51,10 @@
                     </div>
                     <section class="section">
                         <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Add guitar</h4>
+                            <div class="full graph_head">
+                                <div class="heading1 margin_0">
+                                <h2>Add guitar</h2>
+                                </div>
                             </div>
 
                             <div class="card-body">
@@ -62,10 +63,10 @@
                                     <div class="col-md-6">
                                             Guitar name:
                                             <form:input cssClass="form-control" path="guitar.name"/> <br>
-
+                                            <form:errors path="guitar.name"/>
                                             Guitar type:
                                             <form:input cssClass="form-control" path="guitar.type"/> <br>
-
+                                            <form:errors path="guitar.type"/>
                                             Maintenance frequency in months:
                                             <form:select cssClass="form-control" items="${maintenanceMonths}" path="guitar.maintenanceFreq"/> <br>
 

@@ -10,12 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <title>Guitar Journal</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- site icon -->
-    <link rel="icon" href="images/fevicon.png" type="image/png"/>
     <!-- bootstrap css -->
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
     <!-- site css -->
@@ -59,7 +58,9 @@
                                         </h2>
                                     </div>
                                     <div class="float-right">
-                                        <a href="${pageContext.request.contextPath}/user/songs/add" class="btn btn-block" data-toggle="tooltip" data-placement="top" title data-original-title="blab">Add</a>
+                                        <a href="${pageContext.request.contextPath}/user/songs/add"
+                                           class="btn btn-info" data-toggle="tooltip" data-placement="top" title
+                                           data-original-title="blab">Add</a>
                                     </div>
                                 </div>
 
@@ -69,42 +70,40 @@
                                             <thead>
                                             <tr>
                                                 <th>Name</th>
-                                                <th class="col-sm-4">Type</th>
-                                                <th class="col-sm-2">Created</th>
+                                                <th class="col-sm-2">Type</th>
+                                                <th class="col-sm-3">Created</th>
                                                 <th class="col-sm-2">Actions</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>dfsa</td>
-                                                <td>dfsa</td>
-                                                <td>sadas</td>
-                                                <td>
-                                                    <div class="d-flex flex-row justify-content-md-between">
-                                                        <div>
-                                                            <a href="${pageContext.request.contextPath}/user/guitars/update/id">
-                                                                <i class="fa fa-camera"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div>
-                                                            <a href="${pageContext.request.contextPath}/user/guitars/delete/id">
-                                                                <i class="fa fa-pencil"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div>
-                                                            <a href="#" type="button">
-                                                                <i class="fa fa-envelope"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div>
-                                                            <a href="#" type="button">
-                                                                <i class="fa fa-trash"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
+                                            <c:forEach items="${songs}" var="song">
+                                                <c:if test="${song.active == 1}">
+                                                    <tr id="${song.id}">
+                                                        <td>${song.name} - ${song.author}</td>
+                                                        <td>${song.guitarType}</td>
+                                                        <td>${song.created}</td>
+                                                        <td>
+                                                            <div class="d-flex flex-row justify-content-md-between">
+                                                                <div>
+                                                                    <a href="${song.url}">
+                                                                        <i class="fa fa-camera"></i>
+                                                                    </a>
+                                                                </div>
+                                                                <div>
+                                                                    <a href="/user/songs/archive/${song.id}" type="button">
+                                                                        <i class="fa fa-envelope"></i>
+                                                                    </a>
+                                                                </div>
+                                                                <div>
+                                                                    <a href="/user/songs/delete/${song.id}" type="button">
+                                                                        <i class="fa fa-trash"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </c:if>
+                                            </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
@@ -127,42 +126,40 @@
                                             <thead>
                                             <tr>
                                                 <th>Name</th>
-                                                <th class="col-sm-4">Type</th>
-                                                <th class="col-sm-2">Created</th>
+                                                <th class="col-sm-2">Type</th>
+                                                <th class="col-sm-3">Created</th>
                                                 <th class="col-sm-2">Actions</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>dfsa</td>
-                                                <td>dfsa</td>
-                                                <td>sadas</td>
-                                                <td>
-                                                    <div class="d-flex flex-row justify-content-md-between">
-                                                        <div>
-                                                            <a href="${pageContext.request.contextPath}/user/guitars/update/id">
-                                                                <i class="fa fa-camera"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div>
-                                                            <a href="${pageContext.request.contextPath}/user/guitars/delete/id">
-                                                                <i class="fa fa-pencil"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div>
-                                                            <a href="#" type="button">
-                                                                <i class="fa fa-reply"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div>
-                                                            <a href="#" type="button">
-                                                                <i class="fa fa-trash"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
+                                            <c:forEach items="${songs}" var="song">
+                                                <c:if test="${song.active == 0}">
+                                                    <tr>
+                                                        <td>${song.name} - ${song.author}</td>
+                                                        <td>${song.guitarType}</td>
+                                                        <td>${song.created}</td>
+                                                        <td>
+                                                            <div class="d-flex flex-row justify-content-md-between">
+                                                                <div>
+                                                                    <a href="${song.url}">
+                                                                        <i class="fa fa-camera"></i>
+                                                                    </a>
+                                                                </div>
+                                                                <div>
+                                                                    <a href="/user/songs/active/${song.id}" type="button">
+                                                                        <i class="fa fa-reply"></i>
+                                                                    </a>
+                                                                </div>
+                                                                <div>
+                                                                    <a href="/user/songs/delete/${song.id}" type="button">
+                                                                        <i class="fa fa-trash"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </c:if>
+                                            </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>

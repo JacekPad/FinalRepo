@@ -11,12 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <title>Guitar Journal</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- site icon -->
-    <link rel="icon" href="images/fevicon.png" type="image/png"/>
     <!-- bootstrap css -->
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
     <!-- site css -->
@@ -47,6 +46,7 @@
                     <div class="row column_title">
                         <div class="col-md-12">
                             <div class="page_title">
+                                <a class="fa fa-arrow-left" href="${pageContext.request.contextPath}/user/songs/list"> Back to the list</a>
                             </div>
                         </div>
                     </div>
@@ -60,107 +60,113 @@
                                         </h2>
                                     </div>
                                 </div>
-                                <form:form modelAttribute="song" method="post">
-                                    <div class="table_section padding_infor_info">
-                                        <div>
+                                <div class="table_section padding_infor_info">
+                                    <div>
+                                        <form:form modelAttribute="song" method="post">
                                             <div class="d-inline-flex">
                                                 <div class="p-3">
                                                     Guitar type:
                                                 </div>
                                                 <div class="p-3">
                                                     <form:select items="${guitarTypes}" path="guitarType"/>
+                                                    <form:input id="songName" path="name" />
+                                                    <form:errors path="name"/>
+                                                    <form:input id="songAuthor" path="author"/>
+                                                    <form:errors path="author"/>
+                                                    <form:input id="songUrl" path="url"/>
+
                                                 </div>
                                             </div>
 
                                             <div class="d-inline-flex float-right p-3">
-                                                <input class="btn btn-info" type="submit" value="czy mi to potrzebne?"/>
+                                                <input class="btn btn-info" type="submit" value="Create"/>
                                             </div>
-                                        </div>
-                                        <div class="row w-100 p-3">
+                                        </form:form>
+                                    </div>
+                                    <div class="row w-100 p-3">
 
-                                            <div class="w-50">
+                                        <div class="w-50">
 
+                                            <div>
+                                                <input type="radio" id="uploadChoice1"
+                                                       name="upload" value="email" checked>
+                                                <label for="uploadChoice1">API</label>
+                                            </div>
+
+                                            <div id="apiDiv" class="">
+                                                <div class="card-body">
+                                                    <form>
+                                                        <label>
+                                                            Artist/Band:
+                                                            <input id="apiArtist" class="form-control" type="text"
+                                                                   name="artistName"
+                                                                   placeholder="Artist/Band name">
+                                                        </label>
+                                                        <label>
+                                                            Song name:
+                                                            <input id="apiName" class="form-control" type="text"
+                                                                   name="songName"
+                                                                   placeholder="Song name">
+                                                        </label>
+                                                        <button id="apiSearch" class="btn btn-info" type="submit">
+                                                            <i class="fa fa-search"></i>
+                                                            Search
+                                                        </button>
+                                                    </form>
+                                                </div>
                                                 <div>
-                                                    <input type="radio" id="uploadChoice1"
-                                                           name="upload" value="email" checked>
-                                                    <label for="uploadChoice1">API</label>
-                                                </div>
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th class="col-sm-4">Song name</th>
+                                                            <th class="col-sm-3">Artist Name</th>
+                                                            <th class="col-sm-2">Actions</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="tableBody">
+                                                        </tbody>
+                                                    </table>
 
-                                                <div id="apiDiv" class="">
-                                                    <div class="card-body">
-                                                        <form>
-                                                            <label>
-                                                                Artist/Band:
-                                                                <input id="apiArtist" class="form-control" type="text"
-                                                                       name="artistName"
-                                                                       placeholder="Artist/Band name">
-                                                            </label>
-                                                            <label>
-                                                                Song name:
-                                                                <input id="apiName" class="form-control" type="text"
-                                                                       name="songName"
-                                                                       placeholder="Song name">
-                                                            </label>
-                                                            <button id="apiSearch" class="btn btn-info" type="submit">
-                                                                <i class="fa fa-search"></i>
-                                                                Search
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                    <div>
-                                                        <table class="table">
-                                                            <thead>
-                                                            <tr>
-                                                                <th class="col-sm-4">Song name</th>
-                                                                <th class="col-sm-3">Artist Name</th>
-                                                                <th class="col-sm-2">Actions</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody id="tableBody">
-                                                            </tbody>
-                                                        </table>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="w-50">
-                                                <div class="">
-                                                    <input type="radio" id="uploadChoice2"
-                                                           name="upload" value="phone">
-                                                    <label for="uploadChoice2">Upload</label>
-                                                </div>
-                                                <div id="uploadDiv" class="hidden">
-                                                    <div class="card-body">
-                                                        <form>
-                                                            <label>
-                                                                Artist/Band:
-                                                                <input class="form-control" type="text"
-                                                                       name="artistName"
-                                                                       placeholder="Artist/Band name">
-                                                            </label>
-                                                            <label>
-                                                                Song name:
-                                                                <input class="form-control" type="text" name="songName"
-                                                                       placeholder="Song name">
-                                                            </label>
-                                                            <button id="uploadButton" class="btn btn-info"
-                                                                    type="submit">
-                                                                <i class="fa fa-upload"></i>
-                                                                Upload
-                                                            </button>
-                                                        </form>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="p-3">
-                                            <div id="apiContent">
-                                                API PREVIEW:
+
+                                        <div class="w-50">
+                                            <div class="">
+                                                <input type="radio" id="uploadChoice2"
+                                                       name="upload" value="phone">
+                                                <label for="uploadChoice2">Upload</label>
+                                            </div>
+                                            <div id="uploadDiv" class="hidden">
+                                                <div class="card-body">
+                                                    <form>
+                                                        <label>
+                                                            Artist/Band:
+                                                            <input id="uploadAuthor" class="form-control" type="text"
+                                                                   name="artistName"
+                                                                   placeholder="Artist/Band name">
+                                                        </label>
+                                                        <label>
+                                                            Song name:
+                                                            <input id="uploadName" class="form-control" type="text" name="songName"
+                                                                   placeholder="Song name">
+                                                        </label>
+                                                        <button id="uploadButton" class="btn btn-info"
+                                                                type="submit">
+                                                            <i class="fa fa-upload"></i>
+                                                            Upload
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </form:form>
+                                    <div class="p-3">
+                                        <div id="apiContent">
+                                            API PREVIEW:
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>

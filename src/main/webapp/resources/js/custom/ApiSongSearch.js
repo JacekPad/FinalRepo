@@ -1,6 +1,12 @@
 let searchButton = document.getElementById("apiSearch");
 let tableBody = document.getElementById("tableBody");
 let apiContent = document.getElementById("apiContent");
+let uploadButton = document.getElementById("uploadButton");
+
+let songNameForm = document.getElementById("songName")
+let songAuthorForm = document.getElementById("songAuthor")
+let songUrlForm = document.getElementById("songUrl")
+
 
 searchButton.addEventListener("click", function (e) {
     e.preventDefault();
@@ -50,13 +56,19 @@ searchButton.addEventListener("click", function (e) {
 
         let selectButtons = document.querySelectorAll(".selectSong");
         selectButtons.forEach(function (e) {
-            e.addEventListener("click", function (e) {
-                e.preventDefault();
-                if(apiContent.firstChild){
+            e.addEventListener("click", function (f) {
+                f.preventDefault();
+                if (apiContent.firstChild) {
                     apiContent.removeChild(apiContent.firstChild);
                 }
-
                 let src = "http://www.songsterr.com/a/wa/song?id=" + this.dataset.id;
+
+                //Form filling
+                let selectedRow = this.parentElement.parentElement.parentElement.children;
+                songNameForm.value = selectedRow[0].innerHTML;
+                songAuthorForm.value = selectedRow[1].innerHTML;
+                songUrlForm.value = src;
+                //
                 let iframe = document.createElement("iframe");
                 iframe.width = "100%";
                 iframe.height = "100%";
@@ -65,6 +77,14 @@ searchButton.addEventListener("click", function (e) {
             })
         })
     })
+})
 
+uploadButton.addEventListener("click", function (e) {
+    e.preventDefault()
+    let uploadAuthor = document.getElementById("uploadAuthor");
+    let uploadName = document.getElementById("uploadName");
 
+    songAuthorForm.value = uploadAuthor.value;
+    songNameForm.value = uploadName.value;
+    songUrlForm.value = "";
 })
