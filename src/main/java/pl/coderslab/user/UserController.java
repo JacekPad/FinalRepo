@@ -15,13 +15,13 @@ public class UserController {
     UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    @GetMapping("/")
+    @GetMapping("/account")
     public String createForm(Model model) {
         model.addAttribute("user", new User());
         return "login";
     }
 
-    @PostMapping("/")
+    @PostMapping("/account")
     public String processForm(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
             return "login";
