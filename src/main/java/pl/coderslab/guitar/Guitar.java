@@ -1,6 +1,7 @@
 package pl.coderslab.guitar;
 
 import lombok.Data;
+import pl.coderslab.guitarStrings.GuitarStrings;
 import pl.coderslab.user.User;
 
 import javax.persistence.*;

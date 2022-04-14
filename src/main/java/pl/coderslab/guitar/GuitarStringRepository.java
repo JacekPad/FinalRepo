@@ -2,6 +2,7 @@ package pl.coderslab.guitar;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import pl.coderslab.guitarStrings.GuitarStrings;
 
 import java.util.List;
 

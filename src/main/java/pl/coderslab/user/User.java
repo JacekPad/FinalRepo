@@ -22,10 +22,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty //+ jakies duza litera + cyfra etc
+    @NotEmpty //+ jakas dlugosc
     private String userName;
 
-    @NotEmpty //+ jakies duza litera + cyfra etc
+    @NotEmpty //+ jakies duza litera + cyfra dlugosc etc
     private String password;
 
     @Email

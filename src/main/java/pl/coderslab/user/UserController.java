@@ -3,37 +3,54 @@ package pl.coderslab.user;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
     UserRepository userRepository;
 
     UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
-    @GetMapping("/add")
+    @GetMapping("/")
     public String createForm(Model model) {
         model.addAttribute("user", new User());
-        return "user/add";
+        return "login";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/")
     public String processForm(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
-            return "/user/add";
+            return "login";
         }
         userRepository.save(user);
-        return "redirect:/user/list";
+        return "redirect:/";
     }
 
+// if logged in send to song list???
+//fix password hash
+    @PostMapping("/login")
+    @ResponseBody
+    public String registerUser(@RequestParam String userName, @RequestParam String password) {
+        List<User> allUsers = userRepository.findAll();
+        for (User allUser : allUsers) {
+            if (allUser.getUserName().equals(userName) && allUser.getPassword().equals(password)) {
+                return "You are logged in";
+            }
+        }
+        return "wrong username or password";
+    }
+
+
+
+
+
+
+
+    //Random stuff
     @GetMapping("/list")
     public String findAll(Model model) {
         model.addAttribute("users", userRepository.findAll());

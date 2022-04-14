@@ -1,4 +1,4 @@
-package pl.coderslab.guitar;
+package pl.coderslab.guitarStrings;
 
 import lombok.Data;
 
