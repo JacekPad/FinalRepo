@@ -11,21 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <title>Guitar Journal</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- site icon -->
-    <link rel="icon" href="images/fevicon.png" type="image/png"/>
-    <!-- bootstrap css -->
-    <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
-    <!-- site css -->
-    <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
-    <link rel="stylesheet" href="<c:url value="/resources/css/flaticon.css"/>" type="text/css"/>
-    <link rel="stylesheet" href="<c:url value="/resources/css/animate.css"/>" type="text/css"/>
-    <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>" type="text/css"/>
-    <link rel="stylesheet" href="<c:url value="/resources/css/responsive.css"/> "/>
-    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-select.css"/>"/>
-    <link rel="stylesheet" href="<c:url value="/resources/css/perfect-scrollbar.css"/>"/>
-    <link rel="stylesheet" href="<c:url value="/resources/css/custom.css"/>"/>
-</head>

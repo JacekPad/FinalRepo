@@ -3,8 +3,10 @@ package pl.coderslab.guitar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -38,8 +40,15 @@ public class GuitarController {
 
     @PostMapping("/add")
 //    validacja potem
-    public String addGuitarPost(Dummy dumy) {
-
+    public String addGuitarPost(@Valid Dummy dumy, BindingResult result, Model model) {
+        if (result.hasErrors()){
+            model.addAttribute("types", guitarStringRepository.getAllTypes());
+            model.addAttribute("brands", guitarStringRepository.getAllBrands());
+            model.addAttribute("sizes", guitarStringRepository.getAllSizes());
+            model.addAttribute("maintenanceMonths", maintenanceMonths());
+            model.addAttribute("stringChangeMonths", stringChangeMonths());
+            return "/guitar/add";
+        }
         dumy.getGuitar().setStrings(findStrings(dumy));
         LocalDate maintenanceDate = LocalDate.now().plusMonths(dumy.getGuitar().getMaintenanceFreq());
         LocalDate stringChangeDate = LocalDate.now().plusMonths(dumy.getGuitar().getStringFreq());

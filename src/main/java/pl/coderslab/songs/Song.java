@@ -1,9 +1,11 @@
 package pl.coderslab.songs;
 
 import lombok.Data;
+import org.springframework.cglib.core.Local;
 import pl.coderslab.user.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -14,17 +16,22 @@ public class Song {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
     private String name;
+    @NotEmpty
     private String author;
+
     private String url;
     private String fileOrSomething;
     private String guitarType;
-    @ManyToMany
-//    ManyToMany czy manyToOne?
-//    User moze miec pare piosenek, kilka userow moze miec zapisana ta sama piosenke po API?
-//    Jak usunac piosenke u 1 usera w ManyToMany tak zeby nie usunelo jej u drugiego usera?
-    private List<User> users;
+    @ManyToOne
+    private User users;
     private LocalDate created;
+    private String active;
+    @PrePersist
+    public void created() {
+        created = LocalDate.now();
+    }
 
 
 }
