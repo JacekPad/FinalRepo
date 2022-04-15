@@ -76,31 +76,35 @@
                                             </thead>
                                             <tbody>
                                             <c:forEach items="${songs}" var="song">
-                                                <c:if test="${song.active == 1}">
-                                                    <tr id="${song.id}">
-                                                        <td>${song.name} - ${song.author}</td>
-                                                        <td>${song.guitarType}</td>
-                                                        <td>${song.created}</td>
-                                                        <td>
-                                                            <div class="d-flex flex-row justify-content-md-between">
-                                                                <div>
-                                                                    <a href="${song.url}">
-                                                                        <i class="fa fa-camera"></i>
-                                                                    </a>
+                                                <c:if test="${song.user.id == loggedUser.id}">
+                                                    <c:if test="${song.active == 1}">
+                                                        <tr id="${song.id}">
+                                                            <td>${song.name} - ${song.author}</td>
+                                                            <td>${song.guitarType}</td>
+                                                            <td>${song.created}</td>
+                                                            <td>
+                                                                <div class="d-flex flex-row justify-content-md-between">
+                                                                    <div>
+                                                                        <a href="${song.url}">
+                                                                            <i class="fa fa-camera"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div>
+                                                                        <a href="/user/songs/archive/${song.id}"
+                                                                           type="button">
+                                                                            <i class="fa fa-envelope"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div>
+                                                                        <a href="/user/songs/delete/${song.id}"
+                                                                           type="button">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </a>
+                                                                    </div>
                                                                 </div>
-                                                                <div>
-                                                                    <a href="/user/songs/archive/${song.id}" type="button">
-                                                                        <i class="fa fa-envelope"></i>
-                                                                    </a>
-                                                                </div>
-                                                                <div>
-                                                                    <a href="/user/songs/delete/${song.id}" type="button">
-                                                                        <i class="fa fa-trash"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                            </td>
+                                                        </tr>
+                                                    </c:if>
                                                 </c:if>
                                             </c:forEach>
                                             </tbody>
@@ -132,31 +136,35 @@
                                             </thead>
                                             <tbody>
                                             <c:forEach items="${songs}" var="song">
-                                                <c:if test="${song.active == 0}">
-                                                    <tr>
-                                                        <td>${song.name} - ${song.author}</td>
-                                                        <td>${song.guitarType}</td>
-                                                        <td>${song.created}</td>
-                                                        <td>
-                                                            <div class="d-flex flex-row justify-content-md-between">
-                                                                <div>
-                                                                    <a href="${song.url}">
-                                                                        <i class="fa fa-camera"></i>
-                                                                    </a>
+                                                <c:if test="${song.user.id == loggedUser.id}">
+                                                    <c:if test="${song.active == 0}">
+                                                        <tr>
+                                                            <td>${song.name} - ${song.author}</td>
+                                                            <td>${song.guitarType}</td>
+                                                            <td>${song.created}</td>
+                                                            <td>
+                                                                <div class="d-flex flex-row justify-content-md-between">
+                                                                    <div>
+                                                                        <a href="${song.url}">
+                                                                            <i class="fa fa-camera"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div>
+                                                                        <a href="/user/songs/active/${song.id}"
+                                                                           type="button">
+                                                                            <i class="fa fa-reply"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div>
+                                                                        <a href="/user/songs/delete/${song.id}"
+                                                                           type="button">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </a>
+                                                                    </div>
                                                                 </div>
-                                                                <div>
-                                                                    <a href="/user/songs/active/${song.id}" type="button">
-                                                                        <i class="fa fa-reply"></i>
-                                                                    </a>
-                                                                </div>
-                                                                <div>
-                                                                    <a href="/user/songs/delete/${song.id}" type="button">
-                                                                        <i class="fa fa-trash"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                            </td>
+                                                        </tr>
+                                                    </c:if>
                                                 </c:if>
                                             </c:forEach>
                                             </tbody>

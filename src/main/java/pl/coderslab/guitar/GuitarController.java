@@ -57,8 +57,7 @@ public class GuitarController {
         LocalDate stringChangeDate = LocalDate.now().plusMonths(guitar.getStringFreq());
         guitar.setMaintenanceDate(maintenanceDate);
         guitar.setStringChange(stringChangeDate);
-        User user = currentUser.getUser();
-        guitar.setUser(user);
+        guitar.setUser(currentUser.getUser());
         guitarRepository.save(guitar);
         return "redirect:/user/guitars/list";
     }
@@ -89,7 +88,7 @@ public class GuitarController {
     //FIX THIS
     @PostMapping("/update")
 //    validacja
-    public String updateGuitarPost(TempGuitar tempGuitar) {
+    public String updateGuitarPost(Guitar guitar) {
 
 //        LocalDate maintenanceDate = LocalDate.now().plusMonths(dumy.getGuitar().getMaintenanceFreq());
 //        LocalDate stringChangeDate = LocalDate.now().plusMonths(dumy.getGuitar().getStringFreq());

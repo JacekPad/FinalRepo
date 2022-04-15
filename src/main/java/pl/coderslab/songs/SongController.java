@@ -1,6 +1,7 @@
 package pl.coderslab.songs;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.user.CurrentUser;
 
 import javax.validation.Valid;
 import java.util.Arrays;
@@ -21,8 +23,9 @@ public class SongController {
     SongRepository songRepository;
 
     @GetMapping("/list")
-    public String songList(Model model) {
+    public String songList(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
         model.addAttribute("songs",songRepository.findAll());
+        model.addAttribute("loggedUser",currentUser.getUser());
         return "/songs/main";
     }
 
@@ -34,11 +37,12 @@ public class SongController {
     }
 
     @PostMapping("/add")
-    public String songAdd(@Valid Song song, BindingResult result, Model model) {
+    public String songAdd(@Valid Song song, BindingResult result, Model model, @AuthenticationPrincipal CurrentUser currentUser) {
         if(result.hasErrors()) {
             model.addAttribute("guitarTypes",guitarTypes());
             return "/songs/add";
         }
+        song.setUser(currentUser.getUser());
         song.setActive("1");
         songRepository.save(song);
         return "redirect:/user/songs/list";

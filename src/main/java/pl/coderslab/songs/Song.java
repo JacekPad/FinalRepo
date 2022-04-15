@@ -25,7 +25,7 @@ public class Song {
     private String fileOrSomething;
     private String guitarType;
     @ManyToOne
-    private User users;
+    private User user;
     private LocalDate created;
     private String active;
     @PrePersist
