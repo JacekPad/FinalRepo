@@ -1,20 +1,27 @@
 package pl.coderslab.guitarStrings;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Brand {
+@Setter
+@Getter
+@ToString
+public class StringBrand {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String Brand;
 
-    @OneToMany
-    List<Type> types;
+    @ManyToMany
+    List<StringType> types;
 
-    @OneToMany
-    List<Size> sizes;
+    @ManyToMany
+    List<StringSize> sizes;
 
 }

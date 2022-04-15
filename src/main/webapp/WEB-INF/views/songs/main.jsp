@@ -34,17 +34,16 @@
         <jsp:include page="/WEB-INF/views/constants/sidebar.jsp"/>
         <!-- end sidebar -->
         <!-- right content -->
-        <div id="content">
+        <div style="background-size: 100%; background-image: url(/resources/images/3845477.jpg)" id="content">
             <!-- topbar -->
             <jsp:include page="/WEB-INF/views/constants/topbar.jsp"/>
             <!-- end topbar -->
             <!-- dashboard inner -->
             <div class="midde_cont">
-                <div class="container-fluid">
-
+                <div style="opacity: 95%" class="full_height">
                     <div class="row column_title">
                         <div class="col-md-12">
-                            <div class="page_title">
+                            <div style="opacity: 1%" class="page_title">
                             </div>
                         </div>
                     </div>

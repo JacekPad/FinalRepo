@@ -6,49 +6,31 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class UserController {
-    UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final UserService userService;
 
-    UserController(UserRepository userRepository) {
+    UserController(UserRepository userRepository, UserService userService) {
         this.userRepository = userRepository;
+        this.userService = userService;
     }
-    @GetMapping("/account")
+    @GetMapping("/login")
     public String createForm(Model model) {
         model.addAttribute("user", new User());
         return "login";
     }
 
-    @PostMapping("/account")
+    @PostMapping("/register")
     public String processForm(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
             return "login";
         }
-        userRepository.save(user);
-        return "redirect:/";
+        userService.saveUser(user);
+//        userRepository.save(user);
+        return "redirect:/login";
     }
-
-// if logged in send to song list???
-//fix password hash
-    @PostMapping("/login")
-    @ResponseBody
-    public String registerUser(@RequestParam String userName, @RequestParam String password) {
-        List<User> allUsers = userRepository.findAll();
-        for (User allUser : allUsers) {
-            if (allUser.getUserName().equals(userName) && allUser.getPassword().equals(password)) {
-                return "You are logged in";
-            }
-        }
-        return "wrong username or password";
-    }
-
-
-
-
-
-
 
     //Random stuff
     @GetMapping("/list")

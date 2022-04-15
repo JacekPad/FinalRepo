@@ -35,18 +35,17 @@
         <jsp:include page="/WEB-INF/views/constants/sidebar.jsp"/>
         <!-- end sidebar -->
         <!-- right content -->
-        <div id="content">
+        <div style="background-size: 100%; background-image: url(/resources/images/3845477.jpg)" id="content">
             <!-- topbar -->
             <jsp:include page="/WEB-INF/views/constants/topbar.jsp"/>
             <!-- end topbar -->
             <!-- dashboard inner -->
             <div class="midde_cont">
-                <div class="container-fluid">
+                <div style="opacity: 95%" class="">
 
                     <div class="row column_title">
                         <div class="col-md-12">
-                            <div class="page_title">
-                                <a class="fa fa-arrow-left" href="${pageContext.request.contextPath}/user/songs/list"> Back to the list</a>
+                            <div style="opacity: 1%" class="page_title">
                             </div>
                         </div>
                     </div>
@@ -58,6 +57,9 @@
                                         <h2>
                                             Add a song
                                         </h2>
+                                    </div>
+                                    <div class="float-right">
+                                    <a style="opacity: 99%" class="fa fa-arrow-left" href="${pageContext.request.contextPath}/user/songs/list"> Back to the list</a>
                                     </div>
                                 </div>
                                 <div class="table_section padding_infor_info">

@@ -1,4 +1,7 @@
-<div class="topbar">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<div style="opacity: 90%" class="topbar">
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="full">
             <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i>
@@ -7,13 +10,19 @@
                 <div class="icon_info">
                     <ul class="user_profile_dd">
                         <li>
-                            <a class="dropdown-toggle" data-toggle="dropdown"><span class="name_user">John David</span></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown"><span class="name_user">
+                                <sec:authorize access="isAuthenticated()">
+                                    <sec:authentication property="principal.username"/>
+                                </sec:authorize>
+                            </span></a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="profile.html">My Profile</a>
                                 <a class="dropdown-item" href="settings.html">Settings</a>
                                 <a class="dropdown-item" href="help.html">Help</a>
-                                <a class="dropdown-item" href="#"><span>Log Out</span> <i
-                                        class="fa fa-sign-out"></i></a>
+                                <form method="post" action="<c:url value="/logout"/>">
+                                    <input class="dropdown-item" type="submit" value="Log out">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                </form>
                             </div>
                         </li>
                     </ul>

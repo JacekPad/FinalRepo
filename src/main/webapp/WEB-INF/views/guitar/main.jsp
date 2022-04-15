@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,17 +36,17 @@
         <jsp:include page="/WEB-INF/views/constants/sidebar.jsp"/>
         <!-- end sidebar -->
         <!-- right content -->
-        <div id="content">
+        <div style="background-size: 100%; background-image: url(/resources/images/3845477.jpg)" id="content">
             <!-- topbar -->
             <jsp:include page="/WEB-INF/views/constants/topbar.jsp"/>
             <!-- end topbar -->
             <!-- dashboard inner -->
             <div class="midde_cont">
-                <div class="container-fluid">
+                <div style="opacity: 95%" class="container-fluid">
 
                     <div class="row column_title">
                         <div class="col-md-12">
-                            <div class="page_title">
+                            <div style="opacity: 1%" class="page_title">
                             </div>
                         </div>
                     </div>
@@ -112,11 +113,11 @@
                                                                 <div class="d-flex flex-row justify-content-md-start">
                                                                     <div class="d-flex flex-row">
                                                                         <span class="p-3">Strings brand:</span>
-                                                                        <span class="p-3">${guitar.strings.brand}</span>
+                                                                        <span class="p-3">${guitar.stringBrand.brand}</span>
                                                                     </div>
                                                                     <div class="d-flex flex-row">
                                                                         <span class="p-3">Strings size:</span>
-                                                                        <span class="p-3">${guitar.strings.size}</span>
+                                                                        <span class="p-3">${guitar.stringSize.size}</span>
                                                                     </div>
                                                                 </div>
 
