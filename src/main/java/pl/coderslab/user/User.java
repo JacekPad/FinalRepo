@@ -3,13 +3,11 @@ package pl.coderslab.user;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import pl.coderslab.guitar.Guitar;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
-
+import java.util.Set;
 
 @Entity
 @Setter
@@ -21,21 +19,19 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotEmpty //+ jakas dlugosc
-    private String userName;
-
-    @NotEmpty //+ jakies duza litera + cyfra dlugosc etc
+//    @NotEmpty
+    @Column(unique = true, length = 50,nullable = false)
+    private String username;
+//    @NotEmpty
     private String password;
-
     @Email
-    @NotEmpty
+//    @NotEmpty
     private String email;
-
     private LocalDate created;
 
-//    @OneToMany
-//    private List<Guitar> guitars;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles;
+
 
     @PrePersist
     public void prePersist() {

@@ -3,3 +3,15 @@
 -------------------------------------------------------------------*/
 
 /** ADD YOUR AWESOME CODES HERE **/
+
+.icon_info ul.user_profile_dd li div form input {
+    font-size: 15px;
+    color: #15283c;
+    padding: 4px 15px;
+    border-bottom: none;
+    line-height: normal;
+}
+
+.icon_info ul.user_profile_dd li form input {
+    cursor: pointer;
+}

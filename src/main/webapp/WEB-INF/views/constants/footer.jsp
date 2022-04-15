@@ -1,5 +1,5 @@
 <!-- footer -->
-<div class="container-fluid">
+<div style="opacity: 80%;" class="container-fluid">
     <div class="footer">
         <p>Copyright © 2018 Designed by html.dupa. All rights reserved.<br><br>
             Distributed By: <a href="https://themewagon.com/">ThemeWagon</a>

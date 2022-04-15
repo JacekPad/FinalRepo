@@ -29,31 +29,31 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/custom.css"/>"/>
 </head>
 <body class="inner_page login">
-<div class="full_container">
+<div style="background-size: 100%; background-image: url(/resources/images/3845477.jpg)" class="full_container">
     <div class="midde_cont">
         <div class="center verticle_center full_height justify-content-around">
-            <div class="p-3 login_section">
+            <div style="background-color:rgb(255,255,255,90%)" class="p-3 login_section">
                 <div class="logo_login">
                     <div class="center">
                         <h2 style="color: white">Rejestracja</h2>
                     </div>
                 </div>
                 <div class="login_form">
-                    <form:form modelAttribute="user" method="post">
+                    <form:form modelAttribute="user" method="post" action="${pageContext.request.contextPath}/register">
                         <fieldset>
                             <div class="field d-flex">
                                 <label class="label_field">User Name:</label>
-                                <form:input path="userName" placeholder = "Type user name"/>
-                                <form:errors path="userName"/>
+                                <form:input path="username" placeholder="Type user name"/>
+                                <form:errors path="username"/>
                             </div>
                             <div class="field d-flex">
                                 <label class="label_field">Password:</label>
-                                <form:password path="password" placeholder = "type password"/>
+                                <form:password path="password" placeholder="Type password"/>
                                 <form:errors path="password"/>
                             </div>
                             <div class="field d-flex">
                                 <label class="label_field">Email Address:</label>
-                                <form:input path="email" placeholder = "type email"/>
+                                <form:input path="email" placeholder="Type email"/>
                                 <form:errors path="email"/>
                             </div>
                             <div class="field margin_0">
@@ -64,29 +64,34 @@
                     </form:form>
                 </div>
             </div>
-            <div class="p-3 login_section">
+            <div style="background-color:rgb(255,255,255,90%)" class="p-3 login_section">
                 <div class="logo_login">
                     <div class="center">
                         <h2 style="color: white">Login</h2>
                     </div>
                 </div>
                 <div class="login_form">
-                    <form method="post" action="${pageContext.request.contextPath}/login">
+                    <form method="post">
                         <%--                    <form:form modelAttribute="login" method="post">--%>
                         <div class="field d-flex">
                             <label class="label_field">User Name:</label>
-                            <input type="text" name="userName">
+                            <input type="text" name="username" placeholder="Type user name">
                             <%--                            <form:input path="userName"/>--%>
                         </div>
                         <div class="field d-flex">
                             <label class="label_field">Password:</label>
-                            <input type="password" name="password">
+                            <input type="password" name="password" placeholder="Type password">
                             <%--                            <form:input path="h"/>--%>
+                        </div>
+                        <div class="field d-flex">
+                            <label class="label_field hidden">:</label>
+
                         </div>
                         <div class="field margin_0">
                             <label class="label_field hidden">hidden label</label>
                             <input class="main_bt" type="submit" value="Log in">
                         </div>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form>
                     <%--                    </form:form>--%>
                 </div>
@@ -95,20 +100,20 @@
         </div>
     </div>
 </div>
-<!-- jQuery -->
-<script src="js/jquery.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<!-- wow animation -->
-<script src="js/animate.js"></script>
-<!-- select country -->
-<script src="js/bootstrap-select.js"></script>
-<!-- nice scrollbar -->
-<script src="js/perfect-scrollbar.min.js"></script>
-<script>
-    var ps = new PerfectScrollbar('#sidebar');
-</script>
-<!-- custom js -->
-<script src="js/custom.js"></script>
+<script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
+<script src="<c:url value="/resources/js/popper.min.js"/>"></script>
+<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/resources/js/animate.js"/>"></script>
+<script src="<c:url value="/resources/js/bootstrap-select.js"/>"></script>
+<script src="<c:url value="/resources/js/owl.carousel.js"/>"></script>
+<script src="<c:url value="/resources/js/Chart.min.js"/>"></script>
+<script src="<c:url value="/resources/js/Chart.bundle.min.js"/>"></script>
+<script src="<c:url value="/resources/js/utils.js"/>"></script>
+<script src="<c:url value="/resources/js/analyser.js"/>"></script>
+<script src="<c:url value="/resources/js/perfect-scrollbar.min.js"/>"></script>
+<script> var ps = new PerfectScrollbar('#sidebar');</script>
+<script src="<c:url value="/resources/js/custom.js"/>"></script>
+<script src="<c:url value="/resources/js/chart_custom_style1.js"/>"></script>
+<script src="<c:url value="/resources/bootstrap.bundle.min.js"/>"></script>
 </body>
 <jsp:include page="/WEB-INF/views/constants/footer.jsp"/>

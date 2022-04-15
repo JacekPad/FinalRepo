@@ -35,17 +35,17 @@
         <jsp:include page="/WEB-INF/views/constants/sidebar.jsp"/>
         <!-- end sidebar -->
         <!-- right content -->
-        <div id="content">
+        <div style="background-size: 100%; background-image: url(/resources/images/3845477.jpg)" id="content">
             <!-- topbar -->
             <jsp:include page="/WEB-INF/views/constants/topbar.jsp"/>
             <!-- end topbar -->
             <!-- dashboard inner -->
             <div class="midde_cont">
-                <div class="container-fluid">
+                <div style="opacity: 95%" class="container-fluid">
 
                     <div class="row column_title">
                         <div class="col-md-12">
-                            <div class="page_title">
+                            <div style="opacity: 1%" class="page_title">
                             </div>
                         </div>
                     </div>
@@ -58,31 +58,31 @@
                             </div>
 
                             <div class="card-body">
-                                    <form:form cssClass="row" modelAttribute="dummy" method="post">
+                                    <form:form cssClass="row" modelAttribute="tempGuitar" method="post">
 
                                     <div class="col-md-6">
                                             Guitar name:
-                                            <form:input cssClass="form-control" path="guitar.name"/> <br>
-                                            <form:errors path="guitar.name"/>
+                                            <form:input cssClass="form-control" path="guitarName"/>
+                                            <form:errors path="guitarName"/> <br>
                                             Guitar type:
-                                            <form:input cssClass="form-control" path="guitar.type"/> <br>
-                                            <form:errors path="guitar.type"/>
+                                            <form:input cssClass="form-control" path="guitarType"/>
+                                            <form:errors path="guitarType"/><br>
                                             Maintenance frequency in months:
-                                            <form:select cssClass="form-control" items="${maintenanceMonths}" path="guitar.maintenanceFreq"/> <br>
+                                            <form:select cssClass="form-control" items="${maintenanceMonths}" path="guitarMaintenanceFreq"/> <br>
 
                                     </div>
                                     <div class="col-md-6">
                                         Strings brand:
-                                        <form:select cssClass="form-control" items="${brands}" path="guitarStrings.brand"/> <br>
+                                        <form:select itemLabel="brand" cssClass="form-control" items="${brands}" path="guitarStringsBrand"/> <br>
 
                                         String type:
-                                        <form:select cssClass="form-control" items="${types}" path="guitarStrings.type"/> <br>
+                                        <form:select itemLabel="type" cssClass="form-control" items="${types}" path="guitarStringsType"/> <br>
 
                                         String Size:
-                                        <form:select cssClass="form-control" items="${sizes}" path="guitarStrings.size"/> <br>
+                                        <form:select itemLabel="size" cssClass="form-control" items="${sizes}" path="guitarStringsSize"/> <br>
 
                                         String change frequency in months:
-                                        <form:select cssClass="form-control" items="${stringChangeMonths}" path="guitar.stringFreq"/><br>
+                                        <form:select cssClass="form-control" items="${stringChangeMonths}" path="guitarStringFreq"/><br>
 
                                     </div>
                                         <div class="col justify-content-md-center">
