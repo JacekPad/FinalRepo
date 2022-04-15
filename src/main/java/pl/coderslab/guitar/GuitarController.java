@@ -1,5 +1,6 @@
 package pl.coderslab.guitar;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -7,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.guitarStrings.BrandRepository;
 import pl.coderslab.guitarStrings.SizeRepository;
 import pl.coderslab.guitarStrings.TypeRepository;
+import pl.coderslab.user.CurrentUser;
+import pl.coderslab.user.User;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -18,59 +21,44 @@ import java.util.List;
 public class GuitarController {
     private final GuitarRepository guitarRepository;
     private final BrandRepository brandRepository;
-    private final TypeRepository typeRepository;
-    private final SizeRepository sizeRepository;
 
-    public GuitarController(GuitarRepository guitarRepository, BrandRepository brandRepository, TypeRepository typeRepository, SizeRepository sizeRepository) {
+    public GuitarController(GuitarRepository guitarRepository, BrandRepository brandRepository) {
 
         this.guitarRepository = guitarRepository;
         this.brandRepository = brandRepository;
-        this.typeRepository = typeRepository;
-        this.sizeRepository = sizeRepository;
     }
 
     @RequestMapping("/list")
-    public String guitarList(Model model) {
+    public String guitarList(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
+        model.addAttribute("loggedUser",currentUser.getUser());
         model.addAttribute("guitars", guitarRepository.findAll());
-//        model.addAttribute("strings", guitarRepository.findAll());
         return "/guitar/main";
     }
 
     @GetMapping("/add")
     public String addGuitarForm(Model model) {
-        model.addAttribute("tempGuitar", new TempGuitar());
-        model.addAttribute("types", typeRepository.findAll());
+        model.addAttribute("guitar", new Guitar());
         model.addAttribute("brands", brandRepository.findAll());
-        model.addAttribute("sizes", sizeRepository.findAll());
         model.addAttribute("maintenanceMonths", maintenanceMonths());
         model.addAttribute("stringChangeMonths", stringChangeMonths());
+        model.addAttribute("types",guitarTypes());
         return "/guitar/add";
     }
 
     @PostMapping("/add")
-//    validacja potem
-    public String addGuitarPost(@Valid TempGuitar tempGuitar, BindingResult result, Model model) {
+    public String addGuitarPost(@Valid Guitar guitar, BindingResult result, Model model, @AuthenticationPrincipal CurrentUser currentUser) {
         if (result.hasErrors()) {
-            model.addAttribute("types", typeRepository.findAll());
             model.addAttribute("brands", brandRepository.findAll());
-            model.addAttribute("sizes", sizeRepository.findAll());
             model.addAttribute("maintenanceMonths", maintenanceMonths());
             model.addAttribute("stringChangeMonths", stringChangeMonths());
             return "/guitar/add";
         }
-        LocalDate maintenanceDate = LocalDate.now().plusMonths(tempGuitar.getGuitarMaintenanceFreq());
-        LocalDate stringChangeDate = LocalDate.now().plusMonths(tempGuitar.getGuitarStringFreq());
-
-        Guitar guitar = new Guitar();
-        guitar.setName(tempGuitar.getGuitarName());
-        guitar.setType(tempGuitar.getGuitarType());
-        guitar.setMaintenanceFreq(tempGuitar.getGuitarMaintenanceFreq());
-        guitar.setStringFreq(tempGuitar.getGuitarStringFreq());
+        LocalDate maintenanceDate = LocalDate.now().plusMonths(guitar.getMaintenanceFreq());
+        LocalDate stringChangeDate = LocalDate.now().plusMonths(guitar.getStringFreq());
         guitar.setMaintenanceDate(maintenanceDate);
         guitar.setStringChange(stringChangeDate);
-        guitar.setStringBrand(tempGuitar.getGuitarStringsBrand());
-        guitar.setStringType(tempGuitar.getGuitarStringsType());
-        guitar.setStringSize(tempGuitar.getGuitarStringsSize());
+        User user = currentUser.getUser();
+        guitar.setUser(user);
         guitarRepository.save(guitar);
         return "redirect:/user/guitars/list";
     }
@@ -118,6 +106,11 @@ public class GuitarController {
 
     public List<Integer> stringChangeMonths() {
         return Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+    }
+
+
+    public List<String> guitarTypes() {
+        return Arrays.asList("Acoustic","Classic","Electric","Bass");
     }
 
 

@@ -53,42 +53,45 @@
                         <div class="card">
                             <div class="full graph_head">
                                 <div class="heading1 margin_0">
-                                <h2>Add guitar</h2>
+                                    <h2>Add guitar</h2>
                                 </div>
                             </div>
 
                             <div class="card-body">
-                                    <form:form cssClass="row" modelAttribute="tempGuitar" method="post">
+                                <form:form cssClass="row" modelAttribute="guitar" method="post">
 
                                     <div class="col-md-6">
-                                            Guitar name:
-                                            <form:input cssClass="form-control" path="guitarName"/>
-                                            <form:errors path="guitarName"/> <br>
-                                            Guitar type:
-                                            <form:input cssClass="form-control" path="guitarType"/>
-                                            <form:errors path="guitarType"/><br>
-                                            Maintenance frequency in months:
-                                            <form:select cssClass="form-control" items="${maintenanceMonths}" path="guitarMaintenanceFreq"/> <br>
+                                        Guitar name:
+                                        <form:input cssClass="form-control" path="name"/>
+                                        <form:errors path="name"/> <br>
+                                        Guitar type:
+                                        <form:select cssClass="form-control" path="type" items="${types}"/>
+                                        <form:errors path="type"/><br>
+                                        Maintenance frequency in months:
+                                        <form:select cssClass="form-control" items="${maintenanceMonths}"
+                                                     path="maintenanceFreq"/> <br>
 
                                     </div>
                                     <div class="col-md-6">
                                         Strings brand:
-                                        <form:select itemLabel="brand" cssClass="form-control" items="${brands}" path="guitarStringsBrand"/> <br>
+                                        <form:select id="stringBrands" itemLabel="brand" cssClass="form-control"
+                                                     items="${brands}" path="stringBrand"/> <br>
 
                                         String type:
-                                        <form:select itemLabel="type" cssClass="form-control" items="${types}" path="guitarStringsType"/> <br>
+                                        <form:select id="stringTypes" cssClass="form-control" path="stringType"/> <br>
 
                                         String Size:
-                                        <form:select itemLabel="size" cssClass="form-control" items="${sizes}" path="guitarStringsSize"/> <br>
+                                        <form:select id="stringSizes" cssClass="form-control" path="stringSize"/> <br>
 
                                         String change frequency in months:
-                                        <form:select cssClass="form-control" items="${stringChangeMonths}" path="guitarStringFreq"/><br>
+                                        <form:select cssClass="form-control" items="${stringChangeMonths}"
+                                                     path="stringFreq"/><br>
 
                                     </div>
-                                        <div class="col justify-content-md-center">
-                                            <input class="btn btn-block" type="submit" value="Send">
-                                        </div>
-                                    </form:form>
+                                    <div class="col justify-content-md-center">
+                                        <input class="btn btn-block" type="submit" value="Send">
+                                    </div>
+                                </form:form>
 
                             </div>
                         </div>
@@ -110,5 +113,6 @@
                 <script src="<c:url value="/resources/js/custom.js"/>"></script>
                 <script src="<c:url value="/resources/js/chart_custom_style1.js"/>"></script>
                 <script src="<c:url value="/resources/bootstrap.bundle.min.js"/>"></script>
+                <script src="<c:url value="/resources/js/custom/stringSearch.js"/>"></script>
 
 <jsp:include page="/WEB-INF/views/constants/footer.jsp"/>

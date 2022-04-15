@@ -7,6 +7,7 @@ import pl.coderslab.guitarStrings.StringType;
 import pl.coderslab.user.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
 @Entity
@@ -17,8 +18,9 @@ public class Guitar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotEmpty
     private String name;
+    @NotEmpty
     private String type;
     private LocalDate created;
 

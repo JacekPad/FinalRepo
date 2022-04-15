@@ -75,8 +75,8 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-
                                             <c:forEach items="${guitars}" var="guitar">
+                                                <c:if test="${guitar.user.id == loggedUser.id}">
                                                 <tr>
                                                     <td>${guitar.name}</td>
                                                     <td>${guitar.created}</td>
@@ -143,6 +143,7 @@
                                                         </div>
                                                     </td>
                                                 </tr>
+                                                </c:if>
                                             </c:forEach>
 
 
