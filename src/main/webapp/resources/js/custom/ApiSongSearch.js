@@ -1,11 +1,10 @@
-let searchButton = document.getElementById("apiSearch");
-let tableBody = document.getElementById("tableBody");
-let apiContent = document.getElementById("apiContent");
-let uploadButton = document.getElementById("uploadButton");
-
-let songNameForm = document.getElementById("songName")
-let songAuthorForm = document.getElementById("songAuthor")
-let songUrlForm = document.getElementById("songUrl")
+const searchButton = document.getElementById("apiSearch");
+const tableBody = document.getElementById("tableBody");
+const apiContent = document.getElementById("apiContent");
+const uploadButton = document.getElementById("uploadButton");
+const songNameForm = document.getElementById("songName")
+const songAuthorForm = document.getElementById("songAuthor")
+const songUrlForm = document.getElementById("songUrl")
 
 
 searchButton.addEventListener("click", function (e) {
@@ -55,12 +54,20 @@ searchButton.addEventListener("click", function (e) {
         }
 
         let selectButtons = document.querySelectorAll(".selectSong");
-        selectButtons.forEach(function (e) {
-            e.addEventListener("click", function (f) {
-                f.preventDefault();
-                if (apiContent.firstChild) {
-                    apiContent.removeChild(apiContent.firstChild);
-                }
+        selectButtons.forEach(function (button) {
+            button.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                //reset buttons names / colors
+                selectButtons.forEach(buttons => {
+                    buttons.className = "btn cur-p btn-outline-primary selectSong"
+                    buttons.innerHTML = "Select"
+                })
+
+                //new button color / name
+                this.className = "btn cur-p btn-success";
+                this.innerHTML = "Selected";
+
                 let src = "http://www.songsterr.com/a/wa/song?id=" + this.dataset.id;
 
                 //Form filling
@@ -68,12 +75,18 @@ searchButton.addEventListener("click", function (e) {
                 songNameForm.value = selectedRow[0].innerHTML;
                 songAuthorForm.value = selectedRow[1].innerHTML;
                 songUrlForm.value = src;
-                //
-                let iframe = document.createElement("iframe");
-                iframe.width = "100%";
-                iframe.height = "100%";
-                iframe.src = src;
-                apiContent.appendChild(iframe);
+
+                // //remove old iframe info
+                // if (apiContent.firstChild) {
+                //     apiContent.removeChild(apiContent.firstChild);
+                // }
+
+                // Access denied
+                // let iframe = document.createElement("iframe");
+                // iframe.width = "100%";
+                // iframe.height = "100%";
+                // iframe.src = src;
+                // apiContent.appendChild(iframe);
             })
         })
     })

@@ -71,11 +71,11 @@
                                                 </div>
                                                 <div class="p-3">
                                                     <form:select items="${guitarTypes}" path="guitarType"/>
-                                                    <form:input id="songName" path="name" />
+                                                    <form:hidden id="songName" path="name" />
                                                     <form:errors path="name"/>
-                                                    <form:input id="songAuthor" path="author"/>
+                                                    <form:hidden id="songAuthor" path="author"/>
                                                     <form:errors path="author"/>
-                                                    <form:input id="songUrl" path="url"/>
+                                                    <form:hidden id="songUrl" path="url"/>
 
                                                 </div>
                                             </div>

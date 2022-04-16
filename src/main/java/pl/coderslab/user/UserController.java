@@ -28,24 +28,16 @@ public class UserController {
             return "login";
         }
         userService.saveUser(user);
-//        userRepository.save(user);
         return "redirect:/login";
     }
 
-    //Random stuff
-    @GetMapping("/list")
-    public String findAll(Model model) {
-        model.addAttribute("users", userRepository.findAll());
-        return "user/list";
-    }
-
-    @GetMapping("/update/{id}")
+    @GetMapping("admin/user/update/{id}")
     public String update(@PathVariable Long id, Model model) {
         model.addAttribute("user", userRepository.getById(id));
         return "user/update";
     }
 
-    @PostMapping("/update")
+    @PostMapping("/admin/update")
     public String update(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
             return "user/update";
@@ -54,11 +46,18 @@ public class UserController {
         return "redirect:/user/list";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/admin/user/delete/{id}")
     public String delete(@PathVariable Long id) {
         userRepository.delete(userRepository.getById(id));
-        return "redirect:/user/list";
+        return "redirect:/admin/user/list";
     }
+
+    @GetMapping("/admin/user/list")
+    public String getUserList(Model model) {
+        model.addAttribute("users",userRepository.findAll());
+        return "user/main";
+    }
+
 
 
 }

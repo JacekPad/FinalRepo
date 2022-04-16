@@ -23,7 +23,7 @@
                 </ul>
                 <sec:authorize access="hasRole('ADMIN')">
                     </li>
-                        <li><a href="price.html"><i class="fa fa-briefcase blue1_color"></i> <span>User list</span></a>
+                        <li><a href="${pageContext.request.contextPath}/admin/user/list"><i class="fa fa-briefcase blue1_color"></i> <span>User list</span></a>
                     </li>
                 </sec:authorize>
 <%--            <sec:authorize access="isAuthenticated()">--%>
