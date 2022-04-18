@@ -86,6 +86,11 @@
                                                                 </a>
                                                             </div>
                                                             <div>
+                                                                <a href="${pageContext.request.contextPath}/admin/user/update/${user.id}">
+                                                                    <i class="fa fa-diamond"></i>
+                                                                </a>
+                                                            </div>
+                                                            <div>
                                                                 <a href="${pageContext.request.contextPath}/admin/user/delete/${user.id}">
                                                                     <i class="fa fa-trash"></i>
                                                                 </a>

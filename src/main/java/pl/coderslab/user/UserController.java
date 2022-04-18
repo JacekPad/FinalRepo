@@ -33,21 +33,6 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("admin/user/update/{id}")
-    public String update(@PathVariable Long id, Model model) {
-        model.addAttribute("user", userRepository.getById(id));
-        return "user/update";
-    }
-
-    @PostMapping("/admin/update")
-    public String update(@Valid User user, BindingResult result) {
-        if (result.hasErrors()) {
-            return "user/update";
-        }
-        userRepository.save(user);
-        return "redirect:/user/list";
-    }
-
     @GetMapping("/admin/user/delete/{id}")
     public String delete(@PathVariable Long id) {
         userRepository.delete(userRepository.getById(id));
