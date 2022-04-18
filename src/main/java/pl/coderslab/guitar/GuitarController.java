@@ -6,10 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.guitarStrings.BrandRepository;
-import pl.coderslab.guitarStrings.SizeRepository;
-import pl.coderslab.guitarStrings.TypeRepository;
 import pl.coderslab.user.CurrentUser;
-import pl.coderslab.user.User;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -67,34 +64,32 @@ public class GuitarController {
         guitarRepository.delete(guitarRepository.getById(id));
         return "redirect:/user/guitars/list";
     }
-                    //FIX THIS
     @GetMapping("/update/{id}")
     public String updateGuitarForm(Model model, @PathVariable Long id) {
         Guitar guitarToUpdate = guitarRepository.getById(id);
-//        Dummy dummy = new Dummy();
-//        dummy.setGuitar(guitarToUpdate);
-//        dummy.setGuitarStrings(guitarToUpdate.getStrings());
-//        model.addAttribute("dummy", dummy);
-//        model.addAttribute("types", typeRepository.findAll());
-//        model.addAttribute("brands", brandRepository.findAll());
-//        model.addAttribute("sizes", sizeRepository.findAll());
-//        model.addAttribute("maintenanceMonths", maintenanceMonths());
-//        model.addAttribute("stringChangeMonths", stringChangeMonths());
-
+        model.addAttribute("guitar", guitarToUpdate);
+        model.addAttribute("brands", brandRepository.findAll());
+        model.addAttribute("maintenanceMonths", maintenanceMonths());
+        model.addAttribute("stringChangeMonths", stringChangeMonths());
+        model.addAttribute("types",guitarTypes());
         return "/guitar/update";
     }
 
 
-    //FIX THIS
     @PostMapping("/update")
-//    validacja
-    public String updateGuitarPost(Guitar guitar) {
-
-//        LocalDate maintenanceDate = LocalDate.now().plusMonths(dumy.getGuitar().getMaintenanceFreq());
-//        LocalDate stringChangeDate = LocalDate.now().plusMonths(dumy.getGuitar().getStringFreq());
-//        dumy.getGuitar().setMaintenanceDate(maintenanceDate);
-//        dumy.getGuitar().setStringChange(stringChangeDate);
-//        guitarRepository.save(dumy.getGuitar());
+    public String updateGuitarPost(@Valid Guitar guitar, BindingResult result, Model model, @AuthenticationPrincipal CurrentUser currentUser) {
+        if (result.hasErrors()) {
+            model.addAttribute("brands", brandRepository.findAll());
+            model.addAttribute("maintenanceMonths", maintenanceMonths());
+            model.addAttribute("stringChangeMonths", stringChangeMonths());
+            return "/guitar/update";
+        }
+        LocalDate maintenanceDate = LocalDate.now().plusMonths(guitar.getMaintenanceFreq());
+        LocalDate stringChangeDate = LocalDate.now().plusMonths(guitar.getStringFreq());
+        guitar.setMaintenanceDate(maintenanceDate);
+        guitar.setStringChange(stringChangeDate);
+        guitar.setUser(currentUser.getUser());
+        guitarRepository.save(guitar);
         return "redirect:/user/guitars/list";
     }
 

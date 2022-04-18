@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +23,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/css/flaticon.css"/>" type="text/css"/>
     <link rel="stylesheet" href="<c:url value="/resources/css/animate.css"/>" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/css/animate.css"/>" type="text/css"/>
     <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>" type="text/css"/>
     <link rel="stylesheet" href="<c:url value="/resources/css/responsive.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-select.css"/>"/>
@@ -49,55 +51,61 @@
                             </div>
                         </div>
                     </div>
-                    <section class="section">
-                        <div class="card">
-                            <div class="full graph_head">
-                                <div class="heading1 margin_0">
-                                    <h2>Add guitar</h2>
+                    <div class="row column1">
+                        <div class="w-100 h-100">
+                            <div class="white_shd full margin_bottom_30">
+                                <div class="full graph_head">
+                                    <form:form method="post" modelAttribute="user">
+                                    <form:hidden path="id"/>
+                                    <form:hidden path="roles"/>
+                                    <form:hidden path="created"/>
+                                    <div class="heading1 margin_0">
+                                        <h2>
+                                            User profile
+                                        </h2>
+                                    </div>
+                                    <div class="float-right">
+                                        <input id="submitChanges" class="btn cur-p btn-danger" type="submit"
+                                               value="Save changes" disabled>
+                                    </div>
+                                </div>
+                                <div class="table_section padding_infor_info">
+                                    <div>
+                                        <div class="p-3 d-inline-flex w-25">
+                                            User name:
+                                        </div>
+                                        <div class="d-inline-flex w-50">
+                                            <div class="label_field d-inline-flex p-3 w-100">
+                                                <form:input id="username" cssClass="w-100" path="username"
+                                                            disabled="true"/>
+                                                <form:errors path="username"/>
+                                                <button id="usernameUnlock"
+                                                        class="btn cur-p btn-outline-secondary fa fa-unlock"></button>
+                                            </div>
+                                            <div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="p-3 d-inline-flex w-25">
+                                            Email:
+                                        </div>
+                                        <div class="d-inline-flex w-50">
+                                            <div class="label_field d-inline-flex p-3 w-100">
+                                                <form:input id="email" cssClass="w-100" path="email" disabled="true"/>
+                                                <form:errors path="email"/>
+                                                <button id="emailUnlock"
+                                                        class="btn cur-p btn-outline-secondary fa fa-unlock"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    DELETE THIS: <form:input path="password"/>
+                                    </form:form>
                                 </div>
                             </div>
-
-                            <div class="card-body">
-                                <form:form cssClass="row" modelAttribute="guitar" method="post" action="/user/guitars/update">
-
-                                    <div class="col-md-6">
-                                        Guitar name:
-                                        <form:hidden path="id"/>
-                                        <form:hidden path="created"/>
-                                        <form:input cssClass="form-control" path="name"/>
-                                        <form:errors path="name"/> <br>
-                                        Guitar type:
-                                        <form:select cssClass="form-control" path="type" items="${types}"/>
-                                        <form:errors path="type"/><br>
-                                        Maintenance frequency in months:
-                                        <form:select cssClass="form-control" items="${maintenanceMonths}"
-                                                     path="maintenanceFreq"/> <br>
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        Strings brand:
-                                        <form:select id="stringBrands" itemLabel="brand" cssClass="form-control"
-                                                     items="${brands}" path="stringBrand"/> <br>
-
-                                        String type:
-                                        <form:select id="stringTypes" cssClass="form-control" path="stringType"/> <br>
-
-                                        String Size:
-                                        <form:select id="stringSizes" cssClass="form-control" path="stringSize"/> <br>
-
-                                        String change frequency in months:
-                                        <form:select cssClass="form-control" items="${stringChangeMonths}"
-                                                     path="stringFreq"/><br>
-
-                                    </div>
-                                    <div class="col justify-content-md-center">
-                                        <input class="btn btn-block" type="submit" value="Send">
-                                    </div>
-                                </form:form>
-
-                            </div>
                         </div>
-                    </section>
+                    </div>
                 </div>
 
                 <script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
@@ -115,6 +123,6 @@
                 <script src="<c:url value="/resources/js/custom.js"/>"></script>
                 <script src="<c:url value="/resources/js/chart_custom_style1.js"/>"></script>
                 <script src="<c:url value="/resources/bootstrap.bundle.min.js"/>"></script>
-                <script src="<c:url value="/resources/js/custom/stringSearch.js"/>"></script>
+                <script src="<c:url value="/resources/js/custom/userProfile.js"/>"></script>
 
 <jsp:include page="/WEB-INF/views/constants/footer.jsp"/>

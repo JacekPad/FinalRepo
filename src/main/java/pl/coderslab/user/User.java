@@ -21,12 +21,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Size(min = 8, max = 50)
+//    @Size(min = 8, max = 50)
     @NotEmpty
     @Column(unique = true, length = 50, nullable = false)
     private String username;
     @NotEmpty
-    @Size(min = 10, max = 20)
+//    @Size(min = 10, max = 20)
     private String password;
 
     @Email

@@ -1,5 +1,6 @@
 package pl.coderslab.user;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,7 @@ public class UserController {
         this.userRepository = userRepository;
         this.userService = userService;
     }
+
     @GetMapping("/login")
     public String createForm(Model model) {
         model.addAttribute("user", new User());
@@ -54,10 +56,28 @@ public class UserController {
 
     @GetMapping("/admin/user/list")
     public String getUserList(Model model) {
-        model.addAttribute("users",userRepository.findAll());
+        model.addAttribute("users", userRepository.findAll());
         return "user/main";
     }
 
+    @GetMapping("/user/profile")
+    public String getUserProfile(@AuthenticationPrincipal CurrentUser currentUser, Model model) {
+        model.addAttribute("user", currentUser.getUser());
+        return "/user/profile";
+    }
 
+    @PostMapping("/user/profile")
+    public String processUser(@Valid User user, BindingResult result,@AuthenticationPrincipal CurrentUser currentUser,Model model) {
+        System.out.println("this usernem:" + user.getUsername());
+        System.out.println("this email: " + user.getEmail());
+        if (result.hasErrors()) {
+            model.addAttribute("user", currentUser.getUser());
+            System.out.println("wrong");
+            return "/user/profile";
+        }
+        System.out.println("right");
+        userService.saveUser(user);
+        return "redirect:/user/profile";
+    }
 
 }

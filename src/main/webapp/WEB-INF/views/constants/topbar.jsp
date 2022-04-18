@@ -16,7 +16,7 @@
                                 </sec:authorize>
                             </span></a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="profile.html">My Profile</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/user/profile">My Profile</a>
                                 <a class="dropdown-item" href="settings.html">Settings</a>
                                 <a class="dropdown-item" href="help.html">Help</a>
                                 <form method="post" action="<c:url value="/logout"/>">
