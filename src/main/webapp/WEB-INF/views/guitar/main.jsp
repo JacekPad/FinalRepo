@@ -81,22 +81,22 @@
                                                     <td>${guitar.name}</td>
                                                     <td>${guitar.created}</td>
                                                     <td>
-                                                        <div class="d-flex flex-row justify-content-md-between w-50">
+                                                        <div class="d-flex flex-row justify-content-md-between w-100">
                                                             <div>
                                                                 <a href="${pageContext.request.contextPath}/user/guitars/update/${guitar.id}">
-                                                                    <i class="fa fa-pencil"></i>
+                                                                    <i style="color: gray" class="btn fa fa-pencil">Edit</i>
                                                                 </a>
                                                             </div>
                                                             <div>
                                                                 <a href="${pageContext.request.contextPath}/user/guitars/delete/${guitar.id}">
-                                                                    <i class="fa fa-trash"></i>
+                                                                    <i style="color: gray" class="btn fa fa-trash">Delete</i>
                                                                 </a>
                                                             </div>
                                                             <div>
-                                                                <button type="button"
-                                                                        class="btn accordion-button collapsed fa fa-plus fa-border"
+                                                                <button style="background: none; border: none; color:gray;" type="button"
+                                                                        class="btn accordion-button collapsed fa fa-plus"
                                                                         data-bs-toggle="collapse"
-                                                                        data-bs-target="#collapse${guitar.id}"></button>
+                                                                        data-bs-target="#collapse${guitar.id}">Expand</button>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -125,13 +125,13 @@
                                                                     <div class="d-flex flex-row">
                                                                         <span class="p-3">String change:</span>
                                                                         <span class="p-3">${guitar.stringChange}</span>
-                                                                        <a class="blue1_color p-3" href="#">Update
+                                                                        <a data-freq="${guitar.stringFreq}" class="blue1_color p-3" href="/user/guitars/change/${guitar.id}">Reset
                                                                             string change
                                                                             <i class="fa fa-refresh"></i>
                                                                         </a>
                                                                         <span class="p-3">Guitar maintenance:</span>
                                                                         <span class="p-3">${guitar.maintenanceDate}</span>
-                                                                        <a class="blue1_color p-3" href="#">Update
+                                                                        <a data-freq="${guitar.maintenanceFreq}" class="blue1_color p-3" href="/user/guitars/maintenance/${guitar.id}">Reset
                                                                             guitar maintenance
                                                                             <i class="fa fa-refresh"></i>
                                                                         </a>
@@ -158,6 +158,7 @@
 
                 <script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
                 <script src="<c:url value="/resources/js/popper.min.js"/>"></script>
+                <script src="<c:url value="/resources/js/calendar.min.js"/>"></script>
                 <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
                 <script src="<c:url value="/resources/js/animate.js"/>"></script>
                 <script src="<c:url value="/resources/js/bootstrap-select.js"/>"></script>

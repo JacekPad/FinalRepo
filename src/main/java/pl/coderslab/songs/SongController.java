@@ -1,6 +1,5 @@
 package pl.coderslab.songs;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +17,11 @@ import java.util.List;
 @Controller
 @RequestMapping("/user/songs/")
 public class SongController {
+    private final SongRepository songRepository;
 
-    @Autowired
-    SongRepository songRepository;
+    public SongController(SongRepository songRepository) {
+        this.songRepository = songRepository;
+    }
 
     @GetMapping("/list")
     public String songList(Model model, @AuthenticationPrincipal CurrentUser currentUser) {

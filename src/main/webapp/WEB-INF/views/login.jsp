@@ -72,20 +72,16 @@
                 </div>
                 <div class="login_form">
                     <form method="post">
-                        <%--                    <form:form modelAttribute="login" method="post">--%>
                         <div class="field d-flex">
                             <label class="label_field">User Name:</label>
                             <input type="text" name="username" placeholder="Type user name">
-                            <%--                            <form:input path="userName"/>--%>
                         </div>
                         <div class="field d-flex">
                             <label class="label_field">Password:</label>
                             <input type="password" name="password" placeholder="Type password">
-                            <%--                            <form:input path="h"/>--%>
                         </div>
                         <div class="field d-flex">
                             <label class="label_field hidden">:</label>
-
                         </div>
                         <div class="field margin_0">
                             <label class="label_field hidden">hidden label</label>
@@ -93,7 +89,6 @@
                         </div>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form>
-                    <%--                    </form:form>--%>
                 </div>
             </div>
 
@@ -104,6 +99,7 @@
 <script src="<c:url value="/resources/js/popper.min.js"/>"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/resources/js/animate.js"/>"></script>
+<script src="<c:url value="/resources/js/calendar.min.js"/>"></script>
 <script src="<c:url value="/resources/js/bootstrap-select.js"/>"></script>
 <script src="<c:url value="/resources/js/owl.carousel.js"/>"></script>
 <script src="<c:url value="/resources/js/Chart.min.js"/>"></script>

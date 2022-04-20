@@ -1,5 +1,6 @@
 package pl.coderslab.guitar;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import pl.coderslab.guitarStrings.StringBrand;
 import pl.coderslab.guitarStrings.StringSize;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 
 @Entity
 @Data
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Guitar {
 
 
@@ -20,11 +22,10 @@ public class Guitar {
     private Long id;
     @NotEmpty
     private String name;
-    @NotEmpty
     private String type;
     private LocalDate created;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
     private Integer stringFreq;

@@ -30,7 +30,12 @@ public class UserController {
             return "login";
         }
         userService.saveUser(user);
-        return "redirect:/login";
+        return "/registrationCompleted";
+    }
+
+    @GetMapping("/test")
+    public String test(){
+        return "/registrationCompleted";
     }
 
     @GetMapping("/admin/user/delete/{id}")
@@ -52,15 +57,12 @@ public class UserController {
     }
 
     @PostMapping("/user/profile")
-    public String processUser(@Valid User user, BindingResult result,@AuthenticationPrincipal CurrentUser currentUser,Model model) {
-        System.out.println("this usernem:" + user.getUsername());
-        System.out.println("this email: " + user.getEmail());
+    public String processUser(@Valid User user, BindingResult result, @AuthenticationPrincipal CurrentUser currentUser, Model model) {
+
         if (result.hasErrors()) {
             model.addAttribute("user", currentUser.getUser());
-            System.out.println("wrong");
             return "/user/profile";
         }
-        System.out.println("right");
         userService.saveUser(user);
         return "redirect:/user/profile";
     }

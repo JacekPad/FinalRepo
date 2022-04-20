@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -69,6 +70,7 @@
                                                 <th>User name</th>
                                                 <th class="col-sm-4">Email</th>
                                                 <th class="col-sm-2">Created</th>
+                                                <th class="col-sm-2">Roles</th>
                                                 <th class="col-sm-2">Actions</th>
                                             </tr>
                                             </thead>
@@ -79,14 +81,18 @@
                                                     <td>${user.email}</td>
                                                     <td>${user.created}</td>
                                                     <td>
+                                                        <c:forEach items="${user.roles}" var="role">${fn:substring(role.name,5,100)}
+                                                        </c:forEach>
+                                                    </td>
+                                                    <td>
                                                         <div class="d-flex flex-row justify-content-md-between w-50">
                                                             <div>
-                                                                <a href="${pageContext.request.contextPath}/admin/user/update/${user.id}">
+                                                                <a data-id="${user.id}" class="blockUser" href="#">
                                                                     <i class="fa fa-lock"></i>
                                                                 </a>
                                                             </div>
                                                             <div>
-                                                                <a href="${pageContext.request.contextPath}/admin/user/update/${user.id}">
+                                                                <a data-id="${user.id}" class="adminUser" href="#">
                                                                     <i class="fa fa-diamond"></i>
                                                                 </a>
                                                             </div>
@@ -123,6 +129,7 @@
                 <script src="<c:url value="/resources/js/perfect-scrollbar.min.js"/>"></script>
                 <script> var ps = new PerfectScrollbar('#sidebar');</script>
                 <script src="<c:url value="/resources/js/custom.js"/>"></script>
+                <script src="<c:url value="/resources/js/custom/userRoleEdit.js"/>"></script>
                 <script src="<c:url value="/resources/js/chart_custom_style1.js"/>"></script>
                 <script src="<c:url value="/resources/bootstrap.bundle.min.js"/>"></script>
 

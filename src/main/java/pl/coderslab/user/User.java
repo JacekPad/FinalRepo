@@ -1,5 +1,6 @@
 package pl.coderslab.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,18 +16,18 @@ import java.util.Set;
 @Setter
 @Getter
 @ToString
-
+@JsonIgnoreProperties({"password","hibernateLazyInitializer", "handler"})
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    @Size(min = 8, max = 50)
+    @Size(min = 8, max = 50)
     @NotEmpty
     @Column(unique = true, length = 50, nullable = false)
     private String username;
     @NotEmpty
-//    @Size(min = 10, max = 20)
+//    @Size(min = 10, max = 20) //porowunuje hashniete?
     private String password;
 
     @Email

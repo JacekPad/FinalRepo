@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class BrandControllerREST {
+public class BrandControllerRest {
     BrandRepository brandRepository;
 
-    BrandControllerREST(BrandRepository brandRepository){
+    BrandControllerRest(BrandRepository brandRepository){
         this.brandRepository = brandRepository;
     }
 

@@ -75,7 +75,6 @@ public class GuitarController {
         return "/guitar/update";
     }
 
-
     @PostMapping("/update")
     public String updateGuitarPost(@Valid Guitar guitar, BindingResult result, Model model, @AuthenticationPrincipal CurrentUser currentUser) {
         if (result.hasErrors()) {
@@ -93,6 +92,21 @@ public class GuitarController {
         return "redirect:/user/guitars/list";
     }
 
+    @GetMapping("/change/{id}")
+    public String changeStringsDate(@PathVariable Long id){
+        Guitar guitar = guitarRepository.getById(id);
+        guitar.setStringChange(LocalDate.now().plusMonths(guitar.getStringFreq()));
+        guitarRepository.save(guitar);
+        return "redirect:/user/guitars/list";
+    }
+
+    @GetMapping("/maintenance/{id}")
+    public String changeMaintenanceDate(@PathVariable Long id){
+        Guitar guitar = guitarRepository.getById(id);
+        guitar.setMaintenanceDate(LocalDate.now().plusMonths(guitar.getMaintenanceFreq()));
+        guitarRepository.save(guitar);
+        return "redirect:/user/guitars/list";
+    }
 
     public List<Integer> maintenanceMonths() {
         return Arrays.asList(6, 12, 18, 24, 30, 36);
@@ -102,10 +116,7 @@ public class GuitarController {
         return Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
     }
 
-
     public List<String> guitarTypes() {
         return Arrays.asList("Acoustic","Classic","Electric","Bass");
     }
-
-
 }
