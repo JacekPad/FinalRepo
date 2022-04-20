@@ -27,7 +27,7 @@ public class User {
     @Column(unique = true, length = 50, nullable = false)
     private String username;
     @NotEmpty
-//    @Size(min = 10, max = 20) //porowunuje hashniete?
+    @Size(min = 10, max = 20)
     private String password;
 
     @Email
