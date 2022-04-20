@@ -29,10 +29,10 @@ function fetchStrings(brand) {
         for (let i = 0; i < obj.length; i++) {
             if (brand == obj[i].id) {
                 //Find String Sizes
-                obj[i].sizes.forEach(e => {
+                obj[i].sizes.forEach(element => {
                     let sizeOption = document.createElement("option");
-                    sizeOption.value = e.id;
-                    sizeOption.innerHTML = e.size;
+                    sizeOption.value = element.id;
+                    sizeOption.innerHTML = element.size;
                     stringSizeSelect.appendChild(sizeOption);
                 });
 
@@ -45,9 +45,5 @@ function fetchStrings(brand) {
                 });
             }
         }
-
     });
-
-
-
 }

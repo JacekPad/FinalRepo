@@ -71,7 +71,7 @@
                                                 <th class="col-sm-4">Email</th>
                                                 <th class="col-sm-2">Created</th>
                                                 <th class="col-sm-2">Roles</th>
-                                                <th class="col-sm-2">Actions</th>
+                                                <th class="col-sm-3">Actions</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -81,24 +81,25 @@
                                                     <td>${user.email}</td>
                                                     <td>${user.created}</td>
                                                     <td>
-                                                        <c:forEach items="${user.roles}" var="role">${fn:substring(role.name,5,100)}
+                                                        <c:forEach items="${user.roles}" var="role">
+                                                            ${fn:substring(role.name,5,20)}
                                                         </c:forEach>
                                                     </td>
                                                     <td>
-                                                        <div class="d-flex flex-row justify-content-md-between w-50">
+                                                        <div class="d-flex flex-row justify-content-md-between w-100">
                                                             <div>
                                                                 <a data-id="${user.id}" class="blockUser" href="#">
-                                                                    <i class="fa fa-lock"></i>
+                                                                    <i class="fa fa-lock"></i> Block User
                                                                 </a>
                                                             </div>
                                                             <div>
                                                                 <a data-id="${user.id}" class="adminUser" href="#">
-                                                                    <i class="fa fa-diamond"></i>
+                                                                    <i class="fa fa-diamond"></i> Give Admin
                                                                 </a>
                                                             </div>
                                                             <div>
                                                                 <a href="${pageContext.request.contextPath}/admin/user/delete/${user.id}">
-                                                                    <i class="fa fa-trash"></i>
+                                                                    <i class="fa fa-trash"></i> Delete User
                                                                 </a>
                                                             </div>
                                                         </div>
