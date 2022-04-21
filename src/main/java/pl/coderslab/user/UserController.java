@@ -35,10 +35,6 @@ public class UserController {
         System.out.println("dlugosc: " + user.getPassword().length());
         if (result.hasErrors()) {
             System.out.println("wrong");
-            if(!user.getPassword().equals(password2)){
-                result.rejectValue("password","error.password","password don't match");
-                return "/login";
-            }
             return "/login";
         }
         if(!user.getPassword().equals(password2)){
@@ -47,11 +43,6 @@ public class UserController {
         }
         System.out.println("git");
         userService.saveUser(user);
-        return "/registrationCompleted";
-    }
-
-    @GetMapping("/test")
-    public String test() {
         return "/registrationCompleted";
     }
 
