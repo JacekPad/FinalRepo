@@ -81,7 +81,7 @@
                                             <div class="d-inline-flex w-50">
                                                 <div class="label_field d-inline-flex p-3 w-100">
                                                     <input class="w-100" type="password" name="typedOldPassword"
-                                                           placeholder="Type the old password">
+                                                           placeholder="Type old password">
                                                 </div>
                                             </div>
                                         </div>
@@ -103,7 +103,7 @@
                                             <div class="d-inline-flex w-50">
                                                 <div class="label_field d-inline-flex p-3 w-100">
                                                     <input class="w-100" type="password" name="newPassword2"
-                                                           placeholder="Type the new password again">
+                                                           placeholder="Type new password again">
                                                 </div>
                                             </div>
                                         </div>

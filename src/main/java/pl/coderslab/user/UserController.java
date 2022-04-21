@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.verificationToken.TokenServiceImpl;
 
 import javax.validation.Valid;
 
@@ -14,11 +15,13 @@ public class UserController {
     private final UserRepository userRepository;
     private final UserService userService;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final TokenServiceImpl tokenServiceImpl;
 
-    UserController(UserRepository userRepository, UserService userService, BCryptPasswordEncoder passwordEncoder) {
+    UserController(UserRepository userRepository, UserService userService, BCryptPasswordEncoder passwordEncoder, TokenServiceImpl tokenServiceImpl) {
         this.userRepository = userRepository;
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
+        this.tokenServiceImpl = tokenServiceImpl;
     }
 
     @GetMapping("/login")
@@ -33,15 +36,20 @@ public class UserController {
         System.out.println("password usera: " + user.getPassword());
         System.out.println("password 2: " + password2);
         System.out.println("dlugosc: " + user.getPassword().length());
+//        validation fail
         if (result.hasErrors()) {
             System.out.println("wrong");
             return "/login";
         }
+//        custom validation fail
         if(!user.getPassword().equals(password2)){
             result.rejectValue("password","error.password","password don't match");
             return "/login";
         }
         System.out.println("git");
+//        create auth token
+//        user.setToken(tokenServiceImpl.createToken());
+
         userService.saveUser(user);
         return "/registrationCompleted";
     }
@@ -85,11 +93,14 @@ public class UserController {
     @PostMapping("/user/password_change")
     public String changePasswordCheck(@Valid User user, BindingResult result, @RequestParam String previousPassword, @RequestParam String newPassword2, @RequestParam String typedOldPassword, Model model,@AuthenticationPrincipal CurrentUser currentUser) {
 //        DELETE SOUTS
+
+//        validation fail
         if (result.hasErrors()) {
             System.out.println("error");
             model.addAttribute("previousPassword", currentUser.getUser().getPassword());
             return "/user/passwordChange";
         }
+//        custom validation fail
         if(!passwordEncoder.matches(typedOldPassword,previousPassword) || !user.getPassword().equals(newPassword2)){
             result.rejectValue("password","error.password","Wrong old password or new password don't match");
             return "/user/passwordChange";

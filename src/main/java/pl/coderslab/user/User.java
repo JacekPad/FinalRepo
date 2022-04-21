@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import pl.coderslab.verificationToken.Token;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -35,12 +36,16 @@ public class User {
     private String email;
     private LocalDate created;
 
+    @OneToOne
+    Token token;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
+    private boolean active;
 
     @PrePersist
     public void prePersist() {
         created = LocalDate.now();
+        active = false;
     }
 }

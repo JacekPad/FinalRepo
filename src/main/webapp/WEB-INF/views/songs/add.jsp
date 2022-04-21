@@ -62,28 +62,27 @@
                                     <a style="opacity: 99%" class="fa fa-arrow-left" href="${pageContext.request.contextPath}/user/songs/list"> Back to the list</a>
                                     </div>
                                 </div>
-                                <div class="table_section padding_infor_info">
+                                <form:form modelAttribute="song" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <div class="table_section padding_infor_info">
                                     <div>
-                                        <form:form modelAttribute="song" method="post">
                                             <div class="d-inline-flex">
                                                 <div class="p-3">
                                                     Guitar type:
                                                 </div>
                                                 <div class="p-3">
                                                     <form:select items="${guitarTypes}" path="guitarType"/>
-                                                    <form:hidden id="songName" path="name" />
+                                                    <form:input id="songName" path="name" />
                                                     <form:errors path="name"/>
-                                                    <form:hidden id="songAuthor" path="author"/>
+                                                    <form:input id="songAuthor" path="author"/>
                                                     <form:errors path="author"/>
-                                                    <form:hidden id="songUrl" path="url"/>
-
+                                                    <form:input id="songUrl" path="url"/>
                                                 </div>
                                             </div>
 
                                             <div class="d-inline-flex float-right p-3">
                                                 <input class="btn btn-info" type="submit" value="Create"/>
                                             </div>
-                                        </form:form>
                                     </div>
                                     <div class="row w-100 p-3">
 
@@ -141,7 +140,7 @@
                                             </div>
                                             <div id="uploadDiv" class="hidden">
                                                 <div class="card-body">
-                                                    <form>
+<%--                                                    <form method="post" action="${pageContext.request.contextPath}/user/upload" enctype="multipart/form-data">--%>
                                                         <label>
                                                             Artist/Band:
                                                             <input id="uploadAuthor" class="form-control" type="text"
@@ -153,23 +152,22 @@
                                                             <input id="uploadName" class="form-control" type="text" name="songName"
                                                                    placeholder="Song name">
                                                         </label>
-                                                        <button id="uploadButton" class="btn btn-info"
-                                                                type="submit">
-                                                            <i class="fa fa-upload"></i>
-                                                            Upload
-                                                        </button>
-                                                    </form>
+                                                        <label>
+                                                            File:
+                                                            <input id="uploadFile" class="form-control" type="file" name="file">
+                                                        </label>
+<%--                                                        <button id="uploadButton" class="btn btn-info"--%>
+<%--                                                                type="submit">--%>
+<%--                                                            <i class="fa fa-upload"></i>--%>
+<%--                                                            Upload--%>
+<%--                                                        </button>--%>
+<%--                                                    </form>--%>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="p-3">
-                                        <div id="apiContent">
-                                            API PREVIEW:
-                                        </div>
-                                    </div>
                                 </div>
-
+                                </form:form>
                             </div>
                         </div>
 

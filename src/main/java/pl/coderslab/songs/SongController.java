@@ -4,10 +4,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import pl.coderslab.user.CurrentUser;
 
 import javax.validation.Valid;
@@ -25,24 +23,37 @@ public class SongController {
 
     @GetMapping("/list")
     public String songList(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
-        model.addAttribute("songs",songRepository.findAll());
-        model.addAttribute("loggedUser",currentUser.getUser());
+        model.addAttribute("songs", songRepository.findAll());
+        model.addAttribute("loggedUser", currentUser.getUser());
         return "/songs/main";
     }
 
     @GetMapping("/add")
     public String songAddForm(Model model) {
-        model.addAttribute("song",new Song());
-        model.addAttribute("guitarTypes",guitarTypes());
+        model.addAttribute("song", new Song());
+        model.addAttribute("guitarTypes", guitarTypes());
         return "/songs/add";
     }
 
     @PostMapping("/add")
-    public String songAdd(@Valid Song song, BindingResult result, Model model, @AuthenticationPrincipal CurrentUser currentUser) {
-        if(result.hasErrors()) {
-            model.addAttribute("guitarTypes",guitarTypes());
+    public String songAdd(@Valid Song song, BindingResult result, Model model, @RequestParam MultipartFile file, @AuthenticationPrincipal CurrentUser currentUser) {
+//        validation error
+        if (result.hasErrors()) {
+            model.addAttribute("guitarTypes", guitarTypes());
             return "/songs/add";
         }
+        //is a file or API?
+        if (file.isEmpty()) {
+            song.setHasFile(false);
+        } else {
+            try {
+                song.setFileContent(file.getBytes());
+                song.setHasFile(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        //        set constants
         song.setUser(currentUser.getUser());
         song.setActive("1");
         songRepository.save(song);
@@ -50,13 +61,13 @@ public class SongController {
     }
 
     @GetMapping("/delete/{id}")
-    public String songDelete(@PathVariable Long id){
+    public String songDelete(@PathVariable Long id) {
         songRepository.delete(songRepository.getById(id));
         return "redirect:/user/songs/list";
     }
 
     @GetMapping("/archive/{id}")
-    public String songArchive(@PathVariable Long id){
+    public String songArchive(@PathVariable Long id) {
         Song songToArchive = songRepository.getById(id);
         songToArchive.setActive("0");
         songRepository.save(songToArchive);
@@ -64,7 +75,7 @@ public class SongController {
     }
 
     @GetMapping("/active/{id}")
-    public String songActive(@PathVariable Long id){
+    public String songActive(@PathVariable Long id) {
         Song songToActivate = songRepository.getById(id);
         songToActivate.setActive("1");
         songRepository.save(songToActivate);
@@ -72,6 +83,6 @@ public class SongController {
     }
 
     public List<String> guitarTypes() {
-        return Arrays.asList("Acoustic","Bass","Classic","Electric");
+        return Arrays.asList("Acoustic", "Bass", "Classic", "Electric");
     }
 }

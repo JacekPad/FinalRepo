@@ -1,11 +1,35 @@
 const searchButton = document.getElementById("apiSearch");
 const tableBody = document.getElementById("tableBody");
 const apiContent = document.getElementById("apiContent");
-const uploadButton = document.getElementById("uploadButton");
 const songNameForm = document.getElementById("songName")
 const songAuthorForm = document.getElementById("songAuthor")
 const songUrlForm = document.getElementById("songUrl")
+const uploadAuthor = document.getElementById("uploadAuthor");
+const uploadName = document.getElementById("uploadName");
+const radioApi = document.getElementById("uploadChoice1");
+const radioUpload = document.getElementById("uploadChoice2");
+const apiAuthor = document.getElementById("apiArtist");
+const apiSongName = document.getElementById("apiName");
+const fileUpload = document.getElementById("uploadFile");
 
+radioApi.addEventListener("change", e =>{
+    songNameForm.value =  "";
+    songAuthorForm.value = "";
+    songUrlForm.value = "";
+    uploadAuthor.value = "";
+    uploadName.value = "";
+    fileUpload.value ="";
+})
+
+radioUpload.addEventListener("change", e => {
+    songNameForm.value =  "";
+    songAuthorForm.value = "";
+    songUrlForm.value = "";
+    apiAuthor.value = "";
+    apiSongName.value = "";
+
+   clearTable();
+})
 
 searchButton.addEventListener("click", function (e) {
     e.preventDefault();
@@ -17,9 +41,8 @@ searchButton.addEventListener("click", function (e) {
         return resp.json();
     }).then(obj => {
 
-        while (tableBody.firstChild) {
-            tableBody.removeChild(tableBody.firstChild);
-        }
+        clearTable();
+
         for (let i = 0; i < 10; i++) {
             let title = obj[i].title;
             let artist = obj[i].artist.name;
@@ -92,12 +115,17 @@ searchButton.addEventListener("click", function (e) {
     })
 })
 
-uploadButton.addEventListener("click", function (e) {
-    e.preventDefault()
-    let uploadAuthor = document.getElementById("uploadAuthor");
-    let uploadName = document.getElementById("uploadName");
+//clear API table
+function clearTable() {
+    while (tableBody.firstChild) {
+        tableBody.removeChild(tableBody.firstChild);
+    }
+}
 
+uploadAuthor.addEventListener("input", input => {
     songAuthorForm.value = uploadAuthor.value;
+})
+
+uploadName.addEventListener("input", input => {
     songNameForm.value = uploadName.value;
-    songUrlForm.value = "";
 })
