@@ -113,9 +113,6 @@
                                             <div class="d-inline-flex w-50">
                                                 <div class="label_field d-inline-flex p-3 w-100">
                                                     <form:errors path="password"/>
-                                                    <c:if test="${error.password != null}">
-                                                        ${error.password}
-                                                    </c:if>
                                                 </div>
                                             </div>
                                         </div>

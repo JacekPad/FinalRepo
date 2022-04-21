@@ -44,22 +44,31 @@
                             <div class="field d-flex">
                                 <label class="label_field">User Name:</label>
                                 <form:input path="username" placeholder="Type user name"/>
-                                <form:errors path="username"/>
                             </div>
+                            <form:errors path="username"/>
+
                             <div class="field d-flex">
                                 <label class="label_field">Password:</label>
                                 <form:password path="password" placeholder="Type password"/>
-                                <form:errors path="password"/>
+                            </div>
+                            <form:errors path="password"/>
+
+                            <form method="post">
+                            <div class="field d-flex">
+                                <label class="label_field">Password:</label>
+                                <input type="password" name="password2" placeholder="Type password again">
                             </div>
                             <div class="field d-flex">
                                 <label class="label_field">Email Address:</label>
                                 <form:input path="email" placeholder="Type email"/>
+                            </div>
                                 <form:errors path="email"/>
-                            </div>
-                            <div class="field margin_0">
-                                <label class="label_field hidden">hidden label</label>
-                                <input class="main_bt" type="submit" value="Sing in">
-                            </div>
+                                <div class="field margin_0">
+                                    <label class="label_field hidden">hidden label</label>
+                                    <input class="main_bt" type="submit" value="Sing in">
+                                </div>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            </form>
                         </fieldset>
                     </form:form>
                 </div>

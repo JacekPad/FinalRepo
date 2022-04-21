@@ -28,12 +28,22 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String processForm(@Valid User user, BindingResult result) {
-        System.out.println(user.getPassword());
-        System.out.println(user.getPassword().length());
+    public String processForm(@Valid User user, BindingResult result, @RequestParam String password2) {
+//        DELETE SOUTS
+        System.out.println("password usera: " + user.getPassword());
+        System.out.println("password 2: " + password2);
+        System.out.println("dlugosc: " + user.getPassword().length());
         if (result.hasErrors()) {
             System.out.println("wrong");
-            return "login";
+            if(!user.getPassword().equals(password2)){
+                result.rejectValue("password","error.password","password don't match");
+                return "/login";
+            }
+            return "/login";
+        }
+        if(!user.getPassword().equals(password2)){
+            result.rejectValue("password","error.password","password don't match");
+            return "/login";
         }
         System.out.println("git");
         userService.saveUser(user);
@@ -83,7 +93,7 @@ public class UserController {
 
     @PostMapping("/user/password_change")
     public String changePasswordCheck(@Valid User user, BindingResult result, @RequestParam String previousPassword, @RequestParam String newPassword2, @RequestParam String typedOldPassword, Model model,@AuthenticationPrincipal CurrentUser currentUser) {
-
+//        DELETE SOUTS
         if (result.hasErrors()) {
             System.out.println("error");
             model.addAttribute("previousPassword", currentUser.getUser().getPassword());
