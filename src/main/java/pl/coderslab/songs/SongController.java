@@ -37,12 +37,12 @@ public class SongController {
 
     @PostMapping("/add")
     public String songAdd(@Valid Song song, BindingResult result, Model model, @RequestParam MultipartFile file, @AuthenticationPrincipal CurrentUser currentUser) {
-//        validation error
+        //        validation error
         if (result.hasErrors()) {
             model.addAttribute("guitarTypes", guitarTypes());
             return "/songs/add";
         }
-        //is a file or API?
+        //      is a file or API
         if (file.isEmpty()) {
             song.setHasFile(false);
         } else {
@@ -66,6 +66,7 @@ public class SongController {
         return "redirect:/user/songs/list";
     }
 
+    //    move song form active to archived
     @GetMapping("/archive/{id}")
     public String songArchive(@PathVariable Long id) {
         Song songToArchive = songRepository.getById(id);
@@ -74,6 +75,7 @@ public class SongController {
         return "redirect:/user/songs/list";
     }
 
+    //    move song form archived to active
     @GetMapping("/active/{id}")
     public String songActive(@PathVariable Long id) {
         Song songToActivate = songRepository.getById(id);
@@ -81,6 +83,23 @@ public class SongController {
         songRepository.save(songToActivate);
         return "redirect:/user/songs/list";
     }
+
+//    show  image test
+//    @GetMapping("/test")
+//    public String testPicture(Model model) {
+//        byte[] fileContent = songRepository.getById(7L).getFileContent();
+//        model.addAttribute("song", songRepository.getById(7L));
+//        return "picture";
+//    }
+//
+//    @GetMapping("/picture")
+//    public String picture() throws UnsupportedEncodingException {
+//        byte[] fileContent = songRepository.getById(7L).getFileContent();
+//        byte[] fileContent64 = Base64.getEncoder().encode(fileContent);
+//        String pic = new String(fileContent64, StandardCharsets.UTF_8);
+//        return pic;
+//
+//    }
 
     public List<String> guitarTypes() {
         return Arrays.asList("Acoustic", "Bass", "Classic", "Electric");

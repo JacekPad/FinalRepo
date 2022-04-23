@@ -72,11 +72,9 @@
                                                 </div>
                                                 <div class="p-3">
                                                     <form:select items="${guitarTypes}" path="guitarType"/>
-                                                    <form:input id="songName" path="name" />
-                                                    <form:errors path="name"/>
-                                                    <form:input id="songAuthor" path="author"/>
-                                                    <form:errors path="author"/>
-                                                    <form:input id="songUrl" path="url"/>
+                                                    <form:hidden id="songName" path="name" />
+                                                    <form:hidden id="songAuthor" path="author"/>
+                                                    <form:hidden id="songUrl" path="url"/>
                                                 </div>
                                             </div>
 
@@ -137,18 +135,20 @@
                                                 <input type="radio" id="uploadChoice2"
                                                        name="upload" value="phone">
                                                 <label for="uploadChoice2">Upload</label>
+                                                <label hidden></label>
                                             </div>
                                             <div id="uploadDiv" class="hidden">
                                                 <div class="card-body">
-<%--                                                    <form method="post" action="${pageContext.request.contextPath}/user/upload" enctype="multipart/form-data">--%>
                                                         <label>
                                                             Artist/Band:
+                                                            <form:errors path="author"/>
                                                             <input id="uploadAuthor" class="form-control" type="text"
                                                                    name="artistName"
                                                                    placeholder="Artist/Band name">
                                                         </label>
                                                         <label>
                                                             Song name:
+                                                            <form:errors path="name"/>
                                                             <input id="uploadName" class="form-control" type="text" name="songName"
                                                                    placeholder="Song name">
                                                         </label>
@@ -156,12 +156,6 @@
                                                             File:
                                                             <input id="uploadFile" class="form-control" type="file" name="file">
                                                         </label>
-<%--                                                        <button id="uploadButton" class="btn btn-info"--%>
-<%--                                                                type="submit">--%>
-<%--                                                            <i class="fa fa-upload"></i>--%>
-<%--                                                            Upload--%>
-<%--                                                        </button>--%>
-<%--                                                    </form>--%>
                                                 </div>
                                             </div>
                                         </div>

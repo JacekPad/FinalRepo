@@ -1,3 +1,4 @@
+//change userDetails
 const usernameButton = document.getElementById("usernameUnlock");
 const emailButton = document.getElementById("emailUnlock");
 const usernameForm = document.getElementById("username");
@@ -40,3 +41,6 @@ submitButton.addEventListener("click", button => {
     usernameForm.disabled = false;
     emailForm.disabled = false;
 })
+
+
+

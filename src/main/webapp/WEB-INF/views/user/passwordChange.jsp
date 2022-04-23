@@ -69,7 +69,7 @@
                                             </h2>
                                         </div>
                                         <div class="float-right">
-                                            <input id="submitChanges" class="btn cur-p btn-danger" type="submit"
+                                            <input id="submitChanges" class="btn cur-p btn-info" type="submit"
                                                    value="Save changes">
                                         </div>
                                     </div>
@@ -80,7 +80,7 @@
                                             </div>
                                             <div class="d-inline-flex w-50">
                                                 <div class="label_field d-inline-flex p-3 w-100">
-                                                    <input class="w-100" type="password" name="typedOldPassword"
+                                                    <input id="oldPassword" class="w-100" type="password" name="typedOldPassword"
                                                            placeholder="Type old password">
                                                 </div>
                                             </div>
@@ -91,7 +91,7 @@
                                             </div>
                                             <div class="d-inline-flex w-50">
                                                 <div class="label_field d-inline-flex p-3 w-100">
-                                                    <form:password cssClass="w-100" path="password" placeholder = "Type new password"/>
+                                                    <form:password id="newPassword" cssClass="w-100" path="password" placeholder = "Type new password"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -102,7 +102,7 @@
                                             </div>
                                             <div class="d-inline-flex w-50">
                                                 <div class="label_field d-inline-flex p-3 w-100">
-                                                    <input class="w-100" type="password" name="newPassword2"
+                                                    <input id="newPassword2" class="w-100" type="password" name="newPassword2"
                                                            placeholder="Type new password again">
                                                 </div>
                                             </div>

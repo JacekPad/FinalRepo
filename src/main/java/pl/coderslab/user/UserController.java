@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.verificationToken.Token;
+import pl.coderslab.verificationToken.TokenRepository;
 import pl.coderslab.verificationToken.TokenServiceImpl;
 
 import javax.validation.Valid;
@@ -16,12 +18,14 @@ public class UserController {
     private final UserService userService;
     private final BCryptPasswordEncoder passwordEncoder;
     private final TokenServiceImpl tokenServiceImpl;
+    private final TokenRepository tokenRepository;
 
-    UserController(UserRepository userRepository, UserService userService, BCryptPasswordEncoder passwordEncoder, TokenServiceImpl tokenServiceImpl) {
+    UserController(UserRepository userRepository, UserService userService, BCryptPasswordEncoder passwordEncoder, TokenServiceImpl tokenServiceImpl, TokenRepository tokenRepository) {
         this.userRepository = userRepository;
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
         this.tokenServiceImpl = tokenServiceImpl;
+        this.tokenRepository = tokenRepository;
     }
 
     @GetMapping("/login")
@@ -31,27 +35,28 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String processForm(@Valid User user, BindingResult result, @RequestParam String password2) {
-//        DELETE SOUTS
-        System.out.println("password usera: " + user.getPassword());
-        System.out.println("password 2: " + password2);
-        System.out.println("dlugosc: " + user.getPassword().length());
+    public String processForm(@Valid User user, BindingResult result, @RequestParam String password2, Model model) {
 //        validation fail
+        System.out.println(user.getPassword());
+        System.out.println(user.getPassword().length());
         if (result.hasErrors()) {
-            System.out.println("wrong");
             return "/login";
         }
 //        custom validation fail
-        if(!user.getPassword().equals(password2)){
-            result.rejectValue("password","error.password","password don't match");
+        if (!user.getPassword().equals(password2)) {
+            result.rejectValue("password", "error.passwordMatch", "password don't match");
             return "/login";
         }
-        System.out.println("git");
+        if (user.getPassword().length() < 10 || user.getPassword().length() > 20) {
+            result.rejectValue("password", "error.passwordLength", "password has to be between 10 and 20 characters");
+            return "/login";
+        }
 //        create auth token
-//        user.setToken(tokenServiceImpl.createToken());
-
+        Token token = tokenServiceImpl.createToken();
+        token.setUser(user);
         userService.saveUser(user);
-        return "/registrationCompleted";
+        model.addAttribute("token", token);
+        return "/tokenActivation";
     }
 
     @GetMapping("/admin/user/delete/{id}")
@@ -68,18 +73,25 @@ public class UserController {
 
     @GetMapping("/user/profile")
     public String getUserProfile(@AuthenticationPrincipal CurrentUser currentUser, Model model) {
-        model.addAttribute("user", currentUser.getUser());
+        User user = currentUser.getUser();
+
+        FakeUser fakeUser = new FakeUser();
+        fakeUser.setUsername(user.getUsername());
+        fakeUser.setEmail(user.getEmail());
+        model.addAttribute("fakeUser", fakeUser);
         return "/user/profile";
     }
 
     @PostMapping("/user/profile")
-    public String processUser(@Valid User user, BindingResult result, @AuthenticationPrincipal CurrentUser currentUser, Model model) {
+    public String processUser(@Valid FakeUser fakeUser, BindingResult result, @AuthenticationPrincipal CurrentUser currentUser, Model model) {
 
         if (result.hasErrors()) {
-            model.addAttribute("user", currentUser.getUser());
             return "/user/profile";
         }
-        userService.saveUser(user);
+        User user = currentUser.getUser();
+        user.setUsername(fakeUser.getUsername());
+        user.setEmail(fakeUser.getEmail());
+        userRepository.save(user);
         return "redirect:/user/profile";
     }
 
@@ -91,7 +103,7 @@ public class UserController {
     }
 
     @PostMapping("/user/password_change")
-    public String changePasswordCheck(@Valid User user, BindingResult result, @RequestParam String previousPassword, @RequestParam String newPassword2, @RequestParam String typedOldPassword, Model model,@AuthenticationPrincipal CurrentUser currentUser) {
+    public String changePasswordCheck(@Valid User user, BindingResult result, @RequestParam String previousPassword, @RequestParam String newPassword2, @RequestParam String typedOldPassword, Model model, @AuthenticationPrincipal CurrentUser currentUser) {
 //        DELETE SOUTS
 
 //        validation fail
@@ -101,12 +113,21 @@ public class UserController {
             return "/user/passwordChange";
         }
 //        custom validation fail
-        if(!passwordEncoder.matches(typedOldPassword,previousPassword) || !user.getPassword().equals(newPassword2)){
-            result.rejectValue("password","error.password","Wrong old password or new password don't match");
+        if (!passwordEncoder.matches(typedOldPassword, previousPassword) || !user.getPassword().equals(newPassword2)) {
+            result.rejectValue("password", "error.password", "Wrong old password or new password don't match");
             return "/user/passwordChange";
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "redirect:/user/profile";
+    }
+
+    @GetMapping("/token-activation/{tokenString}")
+    public String activateAccount(@PathVariable String tokenString) {
+        Token token = tokenRepository.findByToken(tokenString);
+        User user = token.getUser();
+        user.setEnabled(1);
+        userRepository.save(user);
+        return "/registrationCompleted";
     }
 }

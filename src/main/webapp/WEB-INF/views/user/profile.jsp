@@ -55,10 +55,7 @@
                         <div class="w-100 h-100">
                             <div class="white_shd full margin_bottom_30">
                                 <div class="full graph_head">
-                                    <form:form method="post" modelAttribute="user">
-                                    <form:hidden path="id"/>
-                                    <form:hidden path="roles"/>
-                                    <form:hidden path="created"/>
+                                    <form:form method="post" modelAttribute="fakeUser">
                                     <div class="heading1 margin_0">
                                         <h2>
                                             User profile
@@ -100,7 +97,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    DELETE THIS: <form:input path="password"/>
                                     </form:form>
                                 </div>
                             </div>
