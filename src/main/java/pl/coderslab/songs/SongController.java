@@ -109,14 +109,9 @@ public class SongController {
         User songUser = song.getUser();
         model.addAttribute("user", songUser);
         model.addAttribute("song", song);
-        System.out.println(loggedUser.getId().equals(songUser.getId()));
-        System.out.println(loggedUser.getId());
-        System.out.println(songUser.getId());
-
         if(!loggedUser.getId().equals(songUser.getId())) {
             return "/403";
         }
-
         return "user/showUserFile";
     }
 
