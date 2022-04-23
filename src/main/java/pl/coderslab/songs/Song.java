@@ -26,8 +26,8 @@ public class Song {
     private LocalDate created;
     private String active;
     private boolean hasFile;
-    @Lob
-    private byte[] fileContent;
+    private String fileName;
+
     @PrePersist
     public void created() {
         created = LocalDate.now();

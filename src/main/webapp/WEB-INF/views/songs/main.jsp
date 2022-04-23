@@ -85,9 +85,16 @@
                                                             <td>
                                                                 <div class="d-flex flex-row justify-content-md-between">
                                                                     <div>
+                                                                        <c:if test="${song.hasFile == false}">
                                                                         <a href="${song.url}">
-                                                                            <i class="fa fa-camera"></i>
+                                                                            <i class="fa fa-globe"></i>
                                                                         </a>
+                                                                        </c:if>
+                                                                        <c:if test="${song.hasFile == true}">
+                                                                            <a href="/user/songs/show_file/${song.id}">
+                                                                                <i class="fa fa-camera"></i>
+                                                                            </a>
+                                                                        </c:if>
                                                                     </div>
                                                                     <div>
                                                                         <a href="/user/songs/archive/${song.id}"
@@ -145,9 +152,16 @@
                                                             <td>
                                                                 <div class="d-flex flex-row justify-content-md-between">
                                                                     <div>
-                                                                        <a href="${song.url}">
-                                                                            <i class="fa fa-camera"></i>
-                                                                        </a>
+                                                                        <c:if test="${song.hasFile == false}">
+                                                                            <a href="${song.url}">
+                                                                                <i class="fa fa-globe"></i>
+                                                                            </a>
+                                                                        </c:if>
+                                                                        <c:if test="${song.hasFile == true}">
+                                                                            <a href="/user/songs/show_file/${song.id}">
+                                                                                <i class="fa fa-camera"></i>
+                                                                            </a>
+                                                                        </c:if>
                                                                     </div>
                                                                     <div>
                                                                         <a href="/user/songs/active/${song.id}"

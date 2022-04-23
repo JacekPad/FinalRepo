@@ -62,7 +62,7 @@
                                     <a style="opacity: 99%" class="fa fa-arrow-left" href="${pageContext.request.contextPath}/user/songs/list"> Back to the list</a>
                                     </div>
                                 </div>
-                                <form:form modelAttribute="song" method="post" enctype="multipart/form-data">
+                                <form:form modelAttribute="song" method="post" enctype="multipart/form-data" accept = "image/*">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <div class="table_section padding_infor_info">
                                     <div>

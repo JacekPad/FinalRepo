@@ -7,8 +7,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.coderslab.user.CurrentUser;
+import pl.coderslab.user.User;
 
 import javax.validation.Valid;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,8 +50,23 @@ public class SongController {
             song.setHasFile(false);
         } else {
             try {
-                song.setFileContent(file.getBytes());
                 song.setHasFile(true);
+//                create folder if not present
+                File directory = new File("C:\\uploadTest\\" + currentUser.getUsername());
+                if (!directory.exists()) {
+                    directory.mkdir();
+                }
+//                save file to user's folder
+                int divider = file.getContentType().indexOf("/");
+                String fileType = file.getContentType().substring(divider + 1);
+
+                String songNameNoSpaces = song.getName().replaceAll("\\s", "");
+                String songAuthorNoSpaces = song.getAuthor().replaceAll("\\s", "");
+                String fileName = songNameNoSpaces + "_" + songAuthorNoSpaces + "." + fileType;
+
+                song.setFileName(fileName);
+                String savePath = directory + "\\" + fileName;
+                file.transferTo(new File(savePath));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -84,22 +102,24 @@ public class SongController {
         return "redirect:/user/songs/list";
     }
 
-//    show  image test
-//    @GetMapping("/test")
-//    public String testPicture(Model model) {
-//        byte[] fileContent = songRepository.getById(7L).getFileContent();
-//        model.addAttribute("song", songRepository.getById(7L));
-//        return "picture";
-//    }
-//
-//    @GetMapping("/picture")
-//    public String picture() throws UnsupportedEncodingException {
-//        byte[] fileContent = songRepository.getById(7L).getFileContent();
-//        byte[] fileContent64 = Base64.getEncoder().encode(fileContent);
-//        String pic = new String(fileContent64, StandardCharsets.UTF_8);
-//        return pic;
-//
-//    }
+    @GetMapping("/show_file/{id}")
+    public String testPicture(Model model, @PathVariable Long id, @AuthenticationPrincipal CurrentUser currentUser) throws FileNotFoundException {
+        User loggedUser = currentUser.getUser();
+        Song song = songRepository.getById(id);
+        User songUser = song.getUser();
+        model.addAttribute("user", songUser);
+        model.addAttribute("song", song);
+        System.out.println(loggedUser.getId().equals(songUser.getId()));
+        System.out.println(loggedUser.getId());
+        System.out.println(songUser.getId());
+
+        if(!loggedUser.getId().equals(songUser.getId())) {
+            return "/403";
+        }
+
+        return "user/showUserFile";
+    }
+
 
     public List<String> guitarTypes() {
         return Arrays.asList("Acoustic", "Bass", "Classic", "Electric");
