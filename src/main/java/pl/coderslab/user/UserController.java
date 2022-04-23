@@ -37,8 +37,6 @@ public class UserController {
     @PostMapping("/register")
     public String processForm(@Valid User user, BindingResult result, @RequestParam String password2, Model model) {
 //        validation fail
-        System.out.println(user.getPassword());
-        System.out.println(user.getPassword().length());
         if (result.hasErrors()) {
             return "/login";
         }
@@ -104,11 +102,8 @@ public class UserController {
 
     @PostMapping("/user/password_change")
     public String changePasswordCheck(@Valid User user, BindingResult result, @RequestParam String previousPassword, @RequestParam String newPassword2, @RequestParam String typedOldPassword, Model model, @AuthenticationPrincipal CurrentUser currentUser) {
-//        DELETE SOUTS
-
 //        validation fail
         if (result.hasErrors()) {
-            System.out.println("error");
             model.addAttribute("previousPassword", currentUser.getUser().getPassword());
             return "/user/passwordChange";
         }
