@@ -29,20 +29,21 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/custom.css"/>"/>
 </head>
 <body>
-<div style="background-size: 100%; background-image: url(/resources/images/3845477.jpg)"  id="">
+<div style="background-size: 100%; background-image: url(/resources/images/3845477.jpg)" id="">
     <!-- topbar -->
     <jsp:include page="/WEB-INF/views/constants/topbarGuest.jsp"/>
     <!-- end topbar -->
     <!-- dashboard inner -->
-    <div  class="center verticle_center full_height">
+    <div class="center verticle_center full_height">
         <div style="background-color:rgb(255,255,255,90%)" class="login_section">
-            <div style="background-color:rgb(255,255,255,90%)"  class="logo_login">
+            <div style="background-color:rgb(255,255,255,90%)" class="logo_login">
                 <div class="center">
                     <h2 style="color: white">Guitar Journal</h2>
                 </div>
             </div>
             <div style="color:black;" class="login_form full">
-You don't have the access to this page. Please log in again or contact the support.                <div class="center">
+                You don't have the access to this page. Please log in again or contact the support.
+                <div class="center">
                     <a class="btn btn-info" href="${pageContext.request.contextPath}/">Go back to the log in page</a>
                 </div>
             </div>
