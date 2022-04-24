@@ -1,30 +1,81 @@
 const blockUserButtons = document.querySelectorAll(".blockUser")
+const unlockUserButtons = document.querySelectorAll(".unblockUser")
 const adminUserButtons = document.querySelectorAll(".adminUser")
+const token = document.getElementById("token").value;
+
+
+
 
 adminUserButtons.forEach(button => {
     button.addEventListener("click", event => {
         event.preventDefault()
         let userId = button.dataset.id;
-        let apiLink = "http://localhost:8080/userApi/" + userId;
-
-        //object to insert
-        let role = {
-            id: 2,
-            name: "ROLE_ADMIN"
-        }
+        let apiLink = "http://localhost:8080/userAdmin/" + userId;
 
         //put fetch
-        return fetch(apiLink,  {
-            headers: {'Content-Type': 'application/json' },
-            body: JSON.stringify({roles: role}),
+        fetch(apiLink,  {
+            credentials: 'same-origin',
+            headers:{
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-Token': token,
+            },
+            body: JSON.stringify({id: 2, name: "ROLE_ADMIN"}),
             method: 'PUT'
         }).then(resp =>{
             if(!resp.ok) {
                 alert("blad")
             }
-            return resp.json();
         })
 
+    })
+})
+
+blockUserButtons.forEach(button => {
+    button.addEventListener("click", event => {
+        event.preventDefault()
+        let userId = button.dataset.id;
+        let apiLink = "http://localhost:8080/userBlock/" + userId;
+
+        //put fetch
+        fetch(apiLink,  {
+            credentials: 'same-origin',
+            headers:{
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-Token': token,
+            },
+            body: JSON.stringify({enabled:0}),
+            method: 'PUT'
+        }).then(resp =>{
+            if(!resp.ok) {
+                alert("blad")
+            }
+        })
+    })
+})
+
+unlockUserButtons.forEach(button => {
+    button.addEventListener("click", event => {
+        event.preventDefault()
+        let userId = button.dataset.id;
+        let apiLink = "http://localhost:8080/userBlock/" + userId;
+
+        //put fetch
+        fetch(apiLink,  {
+            credentials: 'same-origin',
+            headers:{
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-Token': token,
+            },
+            body: JSON.stringify({enabled:1}),
+            method: 'PUT'
+        }).then(resp =>{
+            if(!resp.ok) {
+                alert("blad")
+            }
+        })
     })
 })
 

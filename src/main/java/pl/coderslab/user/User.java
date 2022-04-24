@@ -16,7 +16,7 @@ import java.util.Set;
 @Setter
 @Getter
 @ToString
-@JsonIgnoreProperties({"password","hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
 
     @Id

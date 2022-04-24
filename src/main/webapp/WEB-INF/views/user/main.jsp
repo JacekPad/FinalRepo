@@ -70,11 +70,13 @@
                                                 <th>User name</th>
                                                 <th class="col-sm-4">Email</th>
                                                 <th class="col-sm-2">Created</th>
-                                                <th class="col-sm-2">Roles</th>
+                                                <th class="col-sm-1">Roles</th>
+                                                <th class="col-sm-1">Enabled</th>
                                                 <th class="col-sm-3">Actions</th>
                                             </tr>
                                             </thead>
                                             <tbody>
+                                            <input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                             <c:forEach items="${users}" var="user">
                                                 <tr>
                                                     <td>${user.username}</td>
@@ -86,11 +88,26 @@
                                                         </c:forEach>
                                                     </td>
                                                     <td>
+                                                        <c:if test="${user.enabled == 1}">
+                                                            Yes
+                                                        </c:if>
+                                                        <c:if test="${user.enabled == 0}">
+                                                            No
+                                                        </c:if>
+                                                    </td>
+                                                    <td>
                                                         <div class="d-flex flex-row justify-content-md-between w-100">
                                                             <div>
+                                                                <c:if test="${user.enabled == 1}">
                                                                 <a data-id="${user.id}" class="blockUser" href="#">
-                                                                    <i class="fa fa-lock"></i> Block User
+                                                                    <i class="fa fa-lock"></i> Disable User
                                                                 </a>
+                                                                </c:if>
+                                                                <c:if test="${user.enabled == 0}">
+                                                                    <a data-id="${user.id}" class="unblockUser" href="#">
+                                                                        <i class="fa fa-unlock"></i> Unlock User
+                                                                    </a>
+                                                                </c:if>
                                                             </div>
                                                             <div>
                                                                 <a data-id="${user.id}" class="adminUser" href="#">
@@ -106,8 +123,6 @@
                                                     </td>
                                                 </tr>
                                             </c:forEach>
-
-
                                             </tbody>
                                         </table>
                                     </div>
