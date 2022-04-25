@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -57,8 +58,7 @@
                                 <div class="full graph_head">
                                     <div class="heading1 margin_0">
                                         <h2>
-                                            User list
-                                        </h2>
+                                            <spring:message code="user.userList"/>                                        </h2>
                                     </div>
                                 </div>
 
@@ -67,12 +67,12 @@
                                         <table class="table">
                                             <thead>
                                             <tr>
-                                                <th>User name</th>
-                                                <th class="col-sm-4">Email</th>
-                                                <th class="col-sm-2">Created</th>
-                                                <th class="col-sm-1">Roles</th>
-                                                <th class="col-sm-1">Enabled</th>
-                                                <th class="col-sm-3">Actions</th>
+                                                <th><spring:message code="user.userName"/></th>
+                                                <th class="col-sm-4"><spring:message code="user.email"/></th>
+                                                <th class="col-sm-2"><spring:message code="app.created"/></th>
+                                                <th class="col-sm-1"><spring:message code="user.roles"/></th>
+                                                <th class="col-sm-1"><spring:message code="user.enabled"/></th>
+                                                <th class="col-sm-3"><spring:message code="app.actions"/></th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -90,10 +90,10 @@
                                                     </td>
                                                     <td id="userEnabled${user.id}">
                                                         <c:if test="${user.enabled == 1}">
-                                                            Yes
+                                                            <spring:message code="app.yes"/>
                                                         </c:if>
                                                         <c:if test="${user.enabled == 0}">
-                                                            No
+                                                            <spring:message code="app.no"/>
                                                         </c:if>
                                                     </td>
                                                     <td>
@@ -103,7 +103,7 @@
                                                                 <span>
                                                                     <a data-id="${user.id}" class="blockUser"
                                                                        href="#">
-                                                                        <i class="fa fa-lock"></i> Disable User
+                                                                        <i class="fa fa-lock"></i> <spring:message code="user.disableUser"/>
                                                                     </a>
                                                                     </span>
 <%--                                                                </c:if>--%>
@@ -111,19 +111,19 @@
                                                                     <span>
                                                                     <a data-id="${user.id}" class="unblockUser"
                                                                        href="#">
-                                                                        <i class="fa fa-unlock"></i> Enable User
+                                                                        <i class="fa fa-unlock"></i> <spring:message code="user.enabledUser"/>
                                                                     </a>
                                                                     </span>
 <%--                                                                </c:if>--%>
                                                             </div>
                                                             <div>
                                                                 <a data-id="${user.id}" class="adminUser" href="#">
-                                                                    <i class="fa fa-diamond"></i> Give Admin
+                                                                    <i class="fa fa-diamond"></i> <spring:message code="user.giveAdmin"/>
                                                                 </a>
                                                             </div>
                                                             <div>
                                                                 <a href="${pageContext.request.contextPath}/admin/user/delete/${user.id}">
-                                                                    <i class="fa fa-trash"></i> Delete User
+                                                                    <i class="fa fa-trash"></i> <spring:message code="user.delete"/>
                                                                 </a>
                                                             </div>
                                                         </div>

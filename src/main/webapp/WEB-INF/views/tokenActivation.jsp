@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,9 +43,9 @@
                 </div>
             </div>
             <div style="color:black;" class="login_form full">
-                Please click on this link to activate your account.
+                <spring:message code="msg.activateAccount"/>
                 <div class="center">
-                    <a class="btn btn-info" href="${pageContext.request.contextPath}/token-activation/${token.token}">Click here to activate your account</a>
+                    <a class="btn btn-info" href="${pageContext.request.contextPath}/token-activation/${token.token}"><spring:message code="app.clickHere"/></a>
                 </div>
             </div>
 

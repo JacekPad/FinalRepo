@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -65,45 +66,45 @@
                                     <div class="full graph_head">
                                         <div class="heading1 margin_0">
                                             <h2>
-                                                Change Password
+                                                <spring:message code="user.changePassword"/>
                                             </h2>
                                         </div>
                                         <div class="float-right">
                                             <input id="submitChanges" class="btn cur-p btn-info" type="submit"
-                                                   value="Save changes">
+                                                   value="<spring:message code="button.save"/>">
                                         </div>
                                     </div>
                                     <div class="table_section padding_infor_info">
                                         <div>
                                             <div class="p-3 d-inline-flex w-25">
-                                                Old password:
+                                                <spring:message code="user.oldPassword"/>:
                                             </div>
                                             <div class="d-inline-flex w-50">
                                                 <div class="label_field d-inline-flex p-3 w-100">
                                                     <input id="oldPassword" class="w-100" type="password" name="typedOldPassword"
-                                                           placeholder="Type old password">
+                                                           placeholder="<spring:message code="user.oldPassword"/>">
                                                 </div>
                                             </div>
                                         </div>
                                         <div>
                                             <div class="p-3 d-inline-flex w-25">
-                                                New password:
+                                                <spring:message code="user.password"/>:
                                             </div>
                                             <div class="d-inline-flex w-50">
                                                 <div class="label_field d-inline-flex p-3 w-100">
-                                                    <form:password id="newPassword" cssClass="w-100" path="password" placeholder = "Type new password"/>
+                                                    <form:password id="newPassword" cssClass="w-100" path="password" placeholder = "password"/>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div>
                                             <div class="p-3 d-inline-flex w-25">
-                                                New password:
+                                                <spring:message code="user.password"/>:
                                             </div>
                                             <div class="d-inline-flex w-50">
                                                 <div class="label_field d-inline-flex p-3 w-100">
                                                     <input id="newPassword2" class="w-100" type="password" name="newPassword2"
-                                                           placeholder="Type new password again">
+                                                           placeholder="password again">
                                                 </div>
                                             </div>
                                         </div>

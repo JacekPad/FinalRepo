@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -60,7 +61,7 @@
                                         </h2>
                                     </div>
                                     <div class="float-right">
-                                        <a href="${pageContext.request.contextPath}/user/songs/list" class="btn btn-info">Go back</a>
+                                        <a href="${pageContext.request.contextPath}/user/songs/list" class="btn btn-info"><spring:message code="button.back"/></a>
                                     </div>
                                 </div>
 

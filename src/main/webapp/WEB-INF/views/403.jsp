@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,9 +43,9 @@
                 </div>
             </div>
             <div style="color:black;" class="login_form full">
-                You don't have the access to this page. Please log in again or contact the support.
+                <spring:message code="error.403"/>
                 <div class="center">
-                    <a class="btn btn-info" href="${pageContext.request.contextPath}/">Go back to the log in page</a>
+                    <a class="btn btn-info" href="${pageContext.request.contextPath}/"><spring:message code="app.goBackMainPage"/></a>
                 </div>
             </div>
         </div>

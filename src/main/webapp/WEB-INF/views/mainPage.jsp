@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,8 +42,8 @@
                     <h2 style="color: white">Guitar Journal</h2>
                 </div>
             </div>
-            <div style="color:black;" class="login_form">
-                OPIS WEBA
+            <div style="color:black;" class="login_form p-3">
+                <p><spring:message code="msg.webDesc"/></p>
             </div>
         </div>
     </div>

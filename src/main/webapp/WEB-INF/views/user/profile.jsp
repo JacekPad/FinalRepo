@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -58,18 +59,18 @@
                                     <form:form method="post" modelAttribute="fakeUser">
                                     <div class="heading1 margin_0">
                                         <h2>
-                                            User profile
+                                            <spring:message code="user.profile"/>
                                         </h2>
                                     </div>
                                     <div class="float-right">
                                         <input id="submitChanges" class="btn cur-p btn-danger" type="submit"
-                                               value="Save changes" disabled>
+                                               value="<spring:message code="button.save"/>" disabled>
                                     </div>
                                 </div>
                                 <div class="table_section padding_infor_info">
                                     <div>
                                         <div class="p-3 d-inline-flex w-25">
-                                            User name:
+                                            <spring:message code="user.userName"/>:
                                         </div>
                                         <div class="d-inline-flex w-50">
                                             <div class="label_field d-inline-flex p-3 w-100">
@@ -86,7 +87,7 @@
                                     </div>
                                     <div>
                                         <div class="p-3 d-inline-flex w-25">
-                                            Email:
+                                            <spring:message code="user.email"/>:
                                         </div>
                                         <div class="d-inline-flex w-50">
                                             <div class="label_field d-inline-flex p-3 w-100">
