@@ -45,7 +45,7 @@
             <div style="color:black;" class="login_form full">
                 <spring:message code="msg.registrationCompleted"/>
                 <div class="center">
-                    <a class="btn btn-info" href="${pageContext.request.contextPath}/"><spring:message code="app.goBackMainPage"/></a>
+                    <a class="btn btn-info" href="${pageContext.request.contextPath}/login"><spring:message code="app.goBackMainPage"/></a>
                 </div>
             </div>
 

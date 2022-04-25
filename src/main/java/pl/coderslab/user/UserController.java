@@ -52,6 +52,7 @@ public class UserController {
 //        create auth token
         Token token = tokenServiceImpl.createToken();
         token.setUser(user);
+        user.setEnabled(0);
         userService.saveUser(user);
         model.addAttribute("token", token);
         return "/tokenActivation";
@@ -110,13 +111,16 @@ public class UserController {
 //        custom validation fail
         if (!passwordEncoder.matches(typedOldPassword, previousPassword) || !user.getPassword().equals(newPassword2)) {
             result.rejectValue("password", "error.password", "Wrong old password or new password don't match");
+            model.addAttribute("previousPassword", currentUser.getUser().getPassword());
             return "/user/passwordChange";
         }
         if (user.getPassword().length() < 10 || user.getPassword().length() > 20) {
             result.rejectValue("password", "error.passwordLength", "password has to be between 10 and 20 characters");
+            model.addAttribute("previousPassword", currentUser.getUser().getPassword());
             return "/user/passwordChange";
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setEnabled(1);
         userRepository.save(user);
         return "redirect:/user/profile";
     }
