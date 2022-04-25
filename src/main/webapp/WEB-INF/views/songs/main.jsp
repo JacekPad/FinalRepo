@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,13 +54,13 @@
                                 <div class="full graph_head">
                                     <div class="heading1 margin_0">
                                         <h2>
-                                            Active songs
+                                            <spring:message code="song.activeSongs"/>
                                         </h2>
                                     </div>
                                     <div class="float-right">
                                         <a href="${pageContext.request.contextPath}/user/songs/add"
                                            class="btn btn-info" data-toggle="tooltip" data-placement="top" title
-                                           data-original-title="blab">Add</a>
+                                           data-original-title="blab"><spring:message code="button.add"/></a>
                                     </div>
                                 </div>
 
@@ -68,10 +69,10 @@
                                         <table class="table">
                                             <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th class="col-sm-2">Type</th>
-                                                <th class="col-sm-3">Created</th>
-                                                <th class="col-sm-2">Actions</th>
+                                                <th><spring:message code="song.name"/></th>
+                                                <th class="col-sm-2"><spring:message code="song.type"/></th>
+                                                <th class="col-sm-3"><spring:message code="app.created"/></th>
+                                                <th class="col-sm-2"><spring:message code="app.actions"/></th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -125,7 +126,7 @@
                                 <div class="full graph_head">
                                     <div class="heading1 margin_0">
                                         <h2>
-                                            Archived songs
+                                            <spring:message code="song.archivedSongs"/>
                                         </h2>
                                     </div>
                                 </div>
@@ -135,10 +136,10 @@
                                         <table class="table">
                                             <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th class="col-sm-2">Type</th>
-                                                <th class="col-sm-3">Created</th>
-                                                <th class="col-sm-2">Actions</th>
+                                                <th><spring:message code="song.name"/></th>
+                                                <th class="col-sm-2"><spring:message code="song.type"/></th>
+                                                <th class="col-sm-3"><spring:message code="app.created"/></th>
+                                                <th class="col-sm-2"><spring:message code="app.actions"/></th>
                                             </tr>
                                             </thead>
                                             <tbody>

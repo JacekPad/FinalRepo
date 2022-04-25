@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -56,11 +57,11 @@
                                 <div class="full graph_head">
                                     <div class="heading1 margin_0">
                                         <h2>
-                                            Guitars
+                                            <spring:message code="guitar.guitars"/>
                                         </h2>
                                     </div>
                                     <div class="float-right">
-                                        <a href="${pageContext.request.contextPath}/user/guitars/add" class="btn btn-info">Add</a>
+                                        <a href="${pageContext.request.contextPath}/user/guitars/add" class="btn btn-info"> <spring:message code="button.add"/>   </a>
                                     </div>
                                 </div>
 
@@ -69,9 +70,9 @@
                                         <table class="table">
                                             <thead>
                                             <tr>
-                                                <th>Guitar</th>
-                                                <th class="col-sm-4">Created</th>
-                                                <th class="col-sm-2">Actions</th>
+                                                <th> <spring:message code="guitar.guitar"/></th>
+                                                <th class="col-sm-4"><spring:message code="app.created"/></th>
+                                                <th class="col-sm-2"><spring:message code="app.actions"/></th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -84,19 +85,19 @@
                                                         <div class="d-flex flex-row justify-content-md-between w-100">
                                                             <div>
                                                                 <a href="${pageContext.request.contextPath}/user/guitars/update/${guitar.id}">
-                                                                    <i style="color: gray" class="btn fa fa-pencil">Edit</i>
+                                                                    <i style="color: gray" class="btn fa fa-pencil"><spring:message code="button.edit"/></i>
                                                                 </a>
                                                             </div>
                                                             <div>
                                                                 <a href="${pageContext.request.contextPath}/user/guitars/delete/${guitar.id}">
-                                                                    <i style="color: gray" class="btn fa fa-trash">Delete</i>
+                                                                    <i style="color: gray" class="btn fa fa-trash"><spring:message code="button.delete"/></i>
                                                                 </a>
                                                             </div>
                                                             <div>
                                                                 <button style="background: none; border: none; color:gray;" type="button"
                                                                         class="btn accordion-button collapsed fa fa-plus"
                                                                         data-bs-toggle="collapse"
-                                                                        data-bs-target="#collapse${guitar.id}">Expand</button>
+                                                                        data-bs-target="#collapse${guitar.id}"><spring:message code="button.expand"/></button>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -112,27 +113,25 @@
                                                                 </div>
                                                                 <div class="d-flex flex-row justify-content-md-start">
                                                                     <div class="d-flex flex-row">
-                                                                        <span class="p-3">Strings brand:</span>
+                                                                        <span class="p-3"><spring:message code="guitar.stringBrand"/>:</span>
                                                                         <span class="p-3">${guitar.stringBrand.brand}</span>
                                                                     </div>
                                                                     <div class="d-flex flex-row">
-                                                                        <span class="p-3">Strings size:</span>
+                                                                        <span class="p-3"><spring:message code="guitar.stringSize"/>:</span>
                                                                         <span class="p-3">${guitar.stringSize.size}</span>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="d-flex flex-row justify-content-md-start">
                                                                     <div class="d-flex flex-row">
-                                                                        <span class="p-3">String change:</span>
+                                                                        <span class="p-3"><spring:message code="guitar.stringChange"/>:</span>
                                                                         <span class="p-3">${guitar.stringChange}</span>
-                                                                        <a data-freq="${guitar.stringFreq}" class="blue1_color p-3" href="/user/guitars/change/${guitar.id}">Reset
-                                                                            string change
+                                                                        <a data-freq="${guitar.stringFreq}" class="blue1_color p-3" href="/user/guitars/change/${guitar.id}"><spring:message code="guitar.stringChangeReset"/>
                                                                             <i class="fa fa-refresh"></i>
                                                                         </a>
-                                                                        <span class="p-3">Guitar maintenance:</span>
+                                                                        <span class="p-3"><spring:message code="guitar.guitarMaintenanceName"/>:</span>
                                                                         <span class="p-3">${guitar.maintenanceDate}</span>
-                                                                        <a data-freq="${guitar.maintenanceFreq}" class="blue1_color p-3" href="/user/guitars/maintenance/${guitar.id}">Reset
-                                                                            guitar maintenance
+                                                                        <a data-freq="${guitar.maintenanceFreq}" class="blue1_color p-3" href="/user/guitars/maintenance/${guitar.id}"><spring:message code="guitar.guitarMaintenanceReset"/>
                                                                             <i class="fa fa-refresh"></i>
                                                                         </a>
                                                                     </div>

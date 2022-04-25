@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,11 +56,11 @@
                                 <div class="full graph_head">
                                     <div class="heading1 margin_0">
                                         <h2>
-                                            Add a song
+                                            <spring:message code="song.addSong"/>
                                         </h2>
                                     </div>
                                     <div class="float-right">
-                                    <a style="opacity: 99%" class="fa fa-arrow-left" href="${pageContext.request.contextPath}/user/songs/list"> Back to the list</a>
+                                    <a style="opacity: 99%" class="fa fa-arrow-left" href="${pageContext.request.contextPath}/user/songs/list"><spring:message code="app.backToTheList"/></a>
                                     </div>
                                 </div>
                                 <form:form modelAttribute="song" method="post" enctype="multipart/form-data" accept = "image/*">
@@ -68,7 +69,7 @@
                                     <div>
                                             <div class="d-inline-flex">
                                                 <div class="p-3">
-                                                    Guitar type:
+                                                    <spring:message code="guitar.guitarType"/>
                                                 </div>
                                                 <div class="p-3">
                                                     <form:select items="${guitarTypes}" path="guitarType"/>
@@ -79,7 +80,7 @@
                                             </div>
 
                                             <div class="d-inline-flex float-right p-3">
-                                                <input class="btn btn-info" type="submit" value="Create"/>
+                                                <input class="btn btn-info" type="submit" value="<spring:message code="button.create"/>"/>
                                             </div>
                                     </div>
                                     <div class="row w-100 p-3">
@@ -96,20 +97,20 @@
                                                 <div class="card-body">
                                                     <form>
                                                         <label>
-                                                            Artist/Band:
+                                                            <spring:message code="song.artist"/>:
                                                             <input id="apiArtist" class="form-control" type="text"
                                                                    name="artistName"
-                                                                   placeholder="Artist/Band name">
+                                                                   placeholder="<spring:message code="song.artist"/>">
                                                         </label>
                                                         <label>
-                                                            Song name:
+                                                            <spring:message code="song.name"/>:
                                                             <input id="apiName" class="form-control" type="text"
                                                                    name="songName"
-                                                                   placeholder="Song name">
+                                                                   placeholder="<spring:message code="song.name"/>">
                                                         </label>
                                                         <button id="apiSearch" class="btn btn-info" type="submit">
                                                             <i class="fa fa-search"></i>
-                                                            Search
+                                                            <spring:message code="button.search"/>
                                                         </button>
                                                     </form>
                                                 </div>
@@ -117,9 +118,9 @@
                                                     <table class="table">
                                                         <thead>
                                                         <tr>
-                                                            <th class="col-sm-4">Song name</th>
-                                                            <th class="col-sm-3">Artist Name</th>
-                                                            <th class="col-sm-2">Actions</th>
+                                                            <th class="col-sm-4"><spring:message code="song.name"/></th>
+                                                            <th class="col-sm-3"><spring:message code="song.artist"/></th>
+                                                            <th class="col-sm-2"><spring:message code="app.actions"/></th>
                                                         </tr>
                                                         </thead>
                                                         <tbody id="tableBody">
@@ -140,20 +141,20 @@
                                             <div id="uploadDiv" class="hidden">
                                                 <div class="card-body">
                                                         <label>
-                                                            Artist/Band:
+                                                            <spring:message code="song.artist"/>:
                                                             <form:errors path="author"/>
                                                             <input id="uploadAuthor" class="form-control" type="text"
                                                                    name="artistName"
-                                                                   placeholder="Artist/Band name">
+                                                                   placeholder="<spring:message code="song.artist"/>">
                                                         </label>
                                                         <label>
-                                                            Song name:
+                                                            <spring:message code="song.name"/>:
                                                             <form:errors path="name"/>
                                                             <input id="uploadName" class="form-control" type="text" name="songName"
-                                                                   placeholder="Song name">
+                                                                   placeholder="<spring:message code="song.name"/>">
                                                         </label>
                                                         <label>
-                                                            File:
+                                                            <spring:message code="app.file"/>:
                                                             <input id="uploadFile" class="form-control" type="file" name="file">
                                                         </label>
                                                 </div>

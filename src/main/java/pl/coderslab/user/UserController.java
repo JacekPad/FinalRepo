@@ -112,6 +112,10 @@ public class UserController {
             result.rejectValue("password", "error.password", "Wrong old password or new password don't match");
             return "/user/passwordChange";
         }
+        if (user.getPassword().length() < 10 || user.getPassword().length() > 20) {
+            result.rejectValue("password", "error.passwordLength", "password has to be between 10 and 20 characters");
+            return "/user/passwordChange";
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "redirect:/user/profile";

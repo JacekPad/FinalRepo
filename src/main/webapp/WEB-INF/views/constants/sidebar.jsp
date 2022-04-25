@@ -1,4 +1,5 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <nav style="opacity: 90%" id="sidebar">
     <div class="sidebar_blog_2">
@@ -8,9 +9,9 @@
                 <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
                         class="fa fa-diamond purple_color"></i> <span>Guitars</span></a>
                 <ul class="collapse list-unstyled" id="element">
-                    <li><a href="${pageContext.request.contextPath}/user/guitars/list">> <span>Guitar list</span></a>
+                    <li><a href="${pageContext.request.contextPath}/user/guitars/list">> <span><spring:message code="sidebar.guitarList"/></span></a>
                     </li>
-                    <li><a href="${pageContext.request.contextPath}/user/guitars/add">> <span>Add new guitar</span></a>
+                    <li><a href="${pageContext.request.contextPath}/user/guitars/add">> <span><spring:message code="sidebar.addNewGuitar"/></span></a>
                     </li>
                 </ul>
             </li>
@@ -18,12 +19,12 @@
                 <a href="#apps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
                         class="fa fa-object-group blue2_color"></i> <span>Songs</span></a>
                 <ul class="collapse list-unstyled" id="apps">
-                    <li><a href="${pageContext.request.contextPath}/user/songs/list">> <span>Song list</span></a></li>
-                    <li><a href="${pageContext.request.contextPath}/user/songs/add">> <span>Add new song</span></a></li>
+                    <li><a href="${pageContext.request.contextPath}/user/songs/list">> <span><spring:message code="sidebar.songList"/></span></a></li>
+                    <li><a href="${pageContext.request.contextPath}/user/songs/add">> <span><spring:message code="sidebar.addNewSong"/></span></a></li>
                 </ul>
                 <sec:authorize access="hasRole('ADMIN')">
                     </li>
-                        <li><a href="${pageContext.request.contextPath}/admin/user/list"><i class="fa fa-briefcase blue1_color"></i> <span>User list</span></a>
+                        <li><a href="${pageContext.request.contextPath}/admin/user/list"><i class="fa fa-briefcase blue1_color"></i> <span><spring:message code="sidebar.userList"/></span></a>
                     </li>
                 </sec:authorize>
 <%--            <sec:authorize access="isAuthenticated()">--%>

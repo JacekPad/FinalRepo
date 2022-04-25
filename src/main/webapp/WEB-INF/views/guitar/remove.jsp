@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,11 +55,11 @@
                                 <div class="full graph_head">
                                     <div class="heading1 margin_0">
                                         <h2>
-                                            Guitars
+                                            <spring:message code="guitar.guitars"/>
                                         </h2>
                                     </div>
                                     <div class="float-right">
-                                        <button class="btn btn-block" type="button">Add</button>
+                                        <button class="btn btn-block" type="button"><spring:message code="button.add"/></button>
                                     </div>
                                 </div>
 
@@ -67,14 +68,12 @@
                                         <table class="table">
                                             <thead>
                                             <tr>
-                                                <th>Guitar</th>
-                                                <th class="col-sm-4">Created</th>
-                                                <th class="col-sm-2">Actions</th>
+                                                <th><spring:message code="guitar.guitar"/></th>
+                                                <th class="col-sm-4"><spring:message code="app.created"/></th>
+                                                <th class="col-sm-2"><spring:message code="app.actions"/></th>
                                             </tr>
                                             </thead>
                                             <tbody>
-
-
                                             <tr>
                                                 <td>Guitar name auto</td>
                                                 <td>Date created auto</td>

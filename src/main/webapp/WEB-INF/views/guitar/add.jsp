@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +54,7 @@
                         <div class="card">
                             <div class="full graph_head">
                                 <div class="heading1 margin_0">
-                                    <h2>Add guitar</h2>
+                                    <h2><spring:message code="guitar.addGuitar"/></h2>
                                 </div>
                             </div>
 
@@ -61,35 +62,34 @@
                                 <form:form cssClass="row" modelAttribute="guitar" method="post">
 
                                     <div class="col-md-6">
-                                        Guitar name:
+                                        <spring:message code="guitar.guitarName"/>:
                                         <form:input cssClass="form-control" path="name"/>
                                         <form:errors path="name"/> <br>
-                                        Guitar type:
+                                        <spring:message code="guitar.guitarType"/>:
                                         <form:select cssClass="form-control" path="type" items="${types}"/>
                                         <form:errors path="type"/><br>
-                                        Maintenance frequency in months:
+                                        <spring:message code="guitar.guitarMaintenance"/>:
                                         <form:select cssClass="form-control" items="${maintenanceMonths}"
                                                      path="maintenanceFreq"/> <br>
 
                                     </div>
                                     <div class="col-md-6">
-                                        Strings brand:
-                                        <form:select id="stringBrands" itemLabel="brand" cssClass="form-control"
+                                        <spring:message code="guitar.stringBrand"/>:                                      <form:select id="stringBrands" itemLabel="brand" cssClass="form-control"
                                                      items="${brands}" path="stringBrand"/> <br>
 
-                                        String type:
+                                        <spring:message code="guitar.stringType"/>:
                                         <form:select id="stringTypes" cssClass="form-control" path="stringType"/> <br>
 
-                                        String Size:
+                                        <spring:message code="guitar.stringSize"/>:
                                         <form:select id="stringSizes" cssClass="form-control" path="stringSize"/> <br>
 
-                                        String change frequency in months:
+                                        <spring:message code="guitar.stringMaintenance"/>:
                                         <form:select cssClass="form-control" items="${stringChangeMonths}"
                                                      path="stringFreq"/><br>
 
                                     </div>
                                     <div class="col justify-content-md-center">
-                                        <input class="btn btn-block" type="submit" value="Send">
+                                        <input class="btn btn-block" type="submit" value=" <spring:message code="button.send"/>   ">
                                     </div>
                                 </form:form>
 
