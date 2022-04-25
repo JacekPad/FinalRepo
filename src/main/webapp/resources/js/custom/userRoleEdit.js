@@ -31,11 +31,10 @@ adminUserButtons.forEach(button => {
 blockUserButtons.forEach(button => {
     let userId = button.dataset.id;
     let userEnabledTable = document.getElementById("userEnabled" + userId)
+    let apiLink = "http://localhost:8080/userBlock/" + userId;
+
     button.addEventListener("click", event => {
         event.preventDefault()
-        // let userId = button.dataset.id;
-        let apiLink = "http://localhost:8080/userBlock/" + userId;
-
         //put fetch
         fetch(apiLink, {
             credentials: 'same-origin',
@@ -56,11 +55,12 @@ blockUserButtons.forEach(button => {
 })
 
 unlockUserButtons.forEach(button => {
+    let userId = button.dataset.id;
+    let userEnabledTable = document.getElementById("userEnabled" + userId)
+    let apiLink = "http://localhost:8080/userBlock/" + userId;
+
     button.addEventListener("click", event => {
         event.preventDefault()
-        let userId = button.dataset.id;
-        let apiLink = "http://localhost:8080/userBlock/" + userId;
-
         //put fetch
         fetch(apiLink, {
             credentials: 'same-origin',
@@ -76,9 +76,7 @@ unlockUserButtons.forEach(button => {
                 alert("blad")
             }
         })
-        let userEnabledTable = document.getElementById("userEnabled" + userId)
         userEnabledTable.innerHTML = "Yes";
-
     })
 })
 

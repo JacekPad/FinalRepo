@@ -99,18 +99,22 @@
                                                     <td>
                                                         <div class="d-flex flex-row justify-content-md-between w-100">
                                                             <div>
-                                                                <c:if test="${user.enabled == 1}">
+<%--                                                                <c:if test="${user.enabled == 1}">--%>
+                                                                <span>
                                                                     <a data-id="${user.id}" class="blockUser"
                                                                        href="#">
                                                                         <i class="fa fa-lock"></i> Disable User
                                                                     </a>
-                                                                </c:if>
-                                                                <c:if test="${user.enabled == 0}">
+                                                                    </span>
+<%--                                                                </c:if>--%>
+<%--                                                                <c:if test="${user.enabled == 0}">--%>
+                                                                    <span>
                                                                     <a data-id="${user.id}" class="unblockUser"
                                                                        href="#">
-                                                                        <i class="fa fa-unlock"></i> Unlock User
+                                                                        <i class="fa fa-unlock"></i> Enable User
                                                                     </a>
-                                                                </c:if>
+                                                                    </span>
+<%--                                                                </c:if>--%>
                                                             </div>
                                                             <div>
                                                                 <a data-id="${user.id}" class="adminUser" href="#">
