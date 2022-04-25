@@ -3,8 +3,7 @@ package pl.coderslab.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.HashSet;
+
 import java.util.List;
 import java.util.Set;
 
@@ -37,10 +36,8 @@ public class UserControllerRest {
 
     @PutMapping(value = "/userBlock/{id}", consumes = "application/json")
     public void blockUser(@PathVariable Long id, @RequestBody User userApi) {
-        System.out.println(id);
         User user = userRepository.getById(id);
         int enabled = userApi.getEnabled();
-        System.out.println(enabled);
         user.setEnabled(enabled);
         userRepository.save(user);
     }

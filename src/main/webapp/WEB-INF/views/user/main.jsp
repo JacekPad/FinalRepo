@@ -76,18 +76,19 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                            <input id="token" type="hidden" name="${_csrf.parameterName}"
+                                                   value="${_csrf.token}"/>
                                             <c:forEach items="${users}" var="user">
                                                 <tr>
                                                     <td>${user.username}</td>
                                                     <td>${user.email}</td>
                                                     <td>${user.created}</td>
-                                                    <td>
+                                                    <td id="userRole">
                                                         <c:forEach items="${user.roles}" var="role">
                                                             ${fn:substring(role.name,5,20)}
                                                         </c:forEach>
                                                     </td>
-                                                    <td>
+                                                    <td id="userEnabled${user.id}">
                                                         <c:if test="${user.enabled == 1}">
                                                             Yes
                                                         </c:if>
@@ -99,12 +100,14 @@
                                                         <div class="d-flex flex-row justify-content-md-between w-100">
                                                             <div>
                                                                 <c:if test="${user.enabled == 1}">
-                                                                <a data-id="${user.id}" class="blockUser" href="#">
-                                                                    <i class="fa fa-lock"></i> Disable User
-                                                                </a>
+                                                                    <a data-id="${user.id}" class="blockUser"
+                                                                       href="#">
+                                                                        <i class="fa fa-lock"></i> Disable User
+                                                                    </a>
                                                                 </c:if>
                                                                 <c:if test="${user.enabled == 0}">
-                                                                    <a data-id="${user.id}" class="unblockUser" href="#">
+                                                                    <a data-id="${user.id}" class="unblockUser"
+                                                                       href="#">
                                                                         <i class="fa fa-unlock"></i> Unlock User
                                                                     </a>
                                                                 </c:if>
