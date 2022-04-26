@@ -1,23 +1,48 @@
 package pl.coderslab.guitar;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import pl.coderslab.guitarStrings.StringBrand;
+import pl.coderslab.guitarStrings.StringSize;
+import pl.coderslab.guitarStrings.StringType;
+import pl.coderslab.user.User;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
 @Entity
+@Data
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Guitar {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotEmpty
     private String name;
     private String type;
+    private LocalDate created;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
+
+    private Integer stringFreq;
+    private LocalDate stringChange;
+
+    private Integer maintenanceFreq;
+    private LocalDate maintenanceDate;
 
     @ManyToOne
-    private GuitarStrings strings;
-    private String stringSize;
+    private StringBrand stringBrand;
+    @ManyToOne
+    private StringType stringType;
+    @ManyToOne
+    private StringSize stringSize;
 
-    private LocalDate stringChange;
-    private LocalDate maintenanceDate;
+    @PrePersist
+    public void created(){
+        created = LocalDate.now();
+    }
 }

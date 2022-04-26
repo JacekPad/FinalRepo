@@ -1,65 +1,136 @@
 package pl.coderslab.user;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import pl.coderslab.verificationToken.Token;
+import pl.coderslab.verificationToken.TokenRepository;
+import pl.coderslab.verificationToken.TokenServiceImpl;
 
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
-    UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final UserService userService;
+    private final BCryptPasswordEncoder passwordEncoder;
+    private final TokenServiceImpl tokenServiceImpl;
+    private final TokenRepository tokenRepository;
 
-    UserController(UserRepository userRepository) {
+    UserController(UserRepository userRepository, UserService userService, BCryptPasswordEncoder passwordEncoder, TokenServiceImpl tokenServiceImpl, TokenRepository tokenRepository) {
         this.userRepository = userRepository;
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+        this.tokenServiceImpl = tokenServiceImpl;
+        this.tokenRepository = tokenRepository;
     }
 
-    @GetMapping("/add")
+    @GetMapping("/login")
     public String createForm(Model model) {
         model.addAttribute("user", new User());
-        return "user/add";
+        return "login";
     }
 
-    @PostMapping("/add")
-    public String processForm(@Valid User user, BindingResult result) {
+    @PostMapping("/register")
+    public String processForm(@Valid User user, BindingResult result, @RequestParam String password2, Model model) {
+//        validation fail
         if (result.hasErrors()) {
-            return "/user/add";
+            return "/login";
         }
-        userRepository.save(user);
-        return "redirect:/user/list";
-    }
-
-    @GetMapping("/list")
-    public String findAll(Model model) {
-        model.addAttribute("users", userRepository.findAll());
-        return "user/list";
-    }
-
-    @GetMapping("/update/{id}")
-    public String update(@PathVariable Long id, Model model) {
-        model.addAttribute("user", userRepository.getById(id));
-        return "user/update";
-    }
-
-    @PostMapping("/update")
-    public String update(@Valid User user, BindingResult result) {
-        if (result.hasErrors()) {
-            return "user/update";
+//        custom validation fail
+        if (!user.getPassword().equals(password2)) {
+            result.rejectValue("password", "error.passwordMatch", "password don't match");
+            return "/login";
         }
-        userRepository.save(user);
-        return "redirect:/user/list";
+        if (user.getPassword().length() < 10 || user.getPassword().length() > 20) {
+            result.rejectValue("password", "error.passwordLength", "password has to be between 10 and 20 characters");
+            return "/login";
+        }
+//        create auth token
+        Token token = tokenServiceImpl.createToken();
+        token.setUser(user);
+        user.setEnabled(0);
+        userService.saveUser(user);
+        model.addAttribute("token", token);
+        return "/tokenActivation";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/admin/user/delete/{id}")
     public String delete(@PathVariable Long id) {
         userRepository.delete(userRepository.getById(id));
-        return "redirect:/user/list";
+        return "redirect:/admin/user/list";
     }
 
+    @GetMapping("/admin/user/list")
+    public String getUserList(Model model) {
+        model.addAttribute("users", userRepository.findAll());
+        return "user/main";
+    }
 
+    @GetMapping("/user/profile")
+    public String getUserProfile(@AuthenticationPrincipal CurrentUser currentUser, Model model) {
+        User user = currentUser.getUser();
+
+        FakeUser fakeUser = new FakeUser();
+        fakeUser.setUsername(user.getUsername());
+        fakeUser.setEmail(user.getEmail());
+        model.addAttribute("fakeUser", fakeUser);
+        return "/user/profile";
+    }
+
+    @PostMapping("/user/profile")
+    public String processUser(@Valid FakeUser fakeUser, BindingResult result, @AuthenticationPrincipal CurrentUser currentUser, Model model) {
+
+        if (result.hasErrors()) {
+            return "/user/profile";
+        }
+        User user = currentUser.getUser();
+        user.setUsername(fakeUser.getUsername());
+        user.setEmail(fakeUser.getEmail());
+        userRepository.save(user);
+        return "redirect:/user/profile";
+    }
+
+    @GetMapping("/user/password_change")
+    public String changePassword(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
+        model.addAttribute("previousPassword", currentUser.getUser().getPassword());
+        model.addAttribute("user", currentUser.getUser());
+        return "/user/passwordChange";
+    }
+
+    @PostMapping("/user/password_change")
+    public String changePasswordCheck(@Valid User user, BindingResult result, @RequestParam String previousPassword, @RequestParam String newPassword2, @RequestParam String typedOldPassword, Model model, @AuthenticationPrincipal CurrentUser currentUser) {
+//        validation fail
+        if (result.hasErrors()) {
+            model.addAttribute("previousPassword", currentUser.getUser().getPassword());
+            return "/user/passwordChange";
+        }
+//        custom validation fail
+        if (!passwordEncoder.matches(typedOldPassword, previousPassword) || !user.getPassword().equals(newPassword2)) {
+            result.rejectValue("password", "error.password", "Wrong old password or new password don't match");
+            model.addAttribute("previousPassword", currentUser.getUser().getPassword());
+            return "/user/passwordChange";
+        }
+        if (user.getPassword().length() < 10 || user.getPassword().length() > 20) {
+            result.rejectValue("password", "error.passwordLength", "password has to be between 10 and 20 characters");
+            model.addAttribute("previousPassword", currentUser.getUser().getPassword());
+            return "/user/passwordChange";
+        }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setEnabled(1);
+        userRepository.save(user);
+        return "redirect:/user/profile";
+    }
+
+    @GetMapping("/token-activation/{tokenString}")
+    public String activateAccount(@PathVariable String tokenString) {
+        Token token = tokenRepository.findByToken(tokenString);
+        User user = token.getUser();
+        user.setEnabled(1);
+        userRepository.save(user);
+        return "/registrationCompleted";
+    }
 }
