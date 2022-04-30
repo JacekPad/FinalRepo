@@ -10,7 +10,7 @@ You can also move songs to or from archived section to keep them organized.
 - Add songs you want to learn (upload your own files or search through 3rd party API for a transcription based on song's or artist's name).
 - Manage users as an admin (delete users, give admin to others, enable/disable users).
 - Archive songs you finished learning or just delete them.
-- 
+
 ## Technologies used:
 - Java 8
 - Maven
