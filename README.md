@@ -34,5 +34,5 @@ You can also move songs to or from archived section to keep them organized.
 - Maven to set dependencies and create initial project.
 - SprinBoot to quickly setup foundation for the project.
 - JavaServerPages for the viewpage logic.
-- BootStrap for the visual side of the website
+- BootStrap for the visual side of the website.
 
