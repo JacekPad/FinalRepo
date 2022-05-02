@@ -1,6 +1,5 @@
 package pl.coderslab.guitar;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import pl.coderslab.guitarStrings.StringBrand;
 import pl.coderslab.guitarStrings.StringSize;
