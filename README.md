@@ -27,7 +27,7 @@ You can also move songs to or from archived section to keep them organized.
 - BootStrap
 
 ##### Technology usage:
-- Spring security to mange user's log-in details.
+- Spring security to mange user's log-in details and log-in logic.
 - MYSQL database to store user's and site's data.
 - REST API to communicate with the database and 3rd party API song search.
 - Hibernate to communicate with the database and create easy access to it's contents.
