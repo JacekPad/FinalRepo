@@ -38,7 +38,7 @@ You can also move songs to or from archived section to keep them organized.
 
 ### website screenshots (click to enlarge):
 <p float="left">
-  <img title="Log-in page src="https://user-images.githubusercontent.com/98467969/168396508-361d7dca-2ecb-4f81-bc33-be186dfaecfe.png" height="300 width="200" />
+  <img title="Log-in page" src="https://user-images.githubusercontent.com/98467969/168396508-361d7dca-2ecb-4f81-bc33-be186dfaecfe.png" height="300 width="200" />
   <img title="Songs list page" src="https://user-images.githubusercontent.com/98467969/168396529-6d2f26d5-2392-404a-8fa9-5e3393f0513c.png" height="300 width="200" /> 
   <img title="Add a song page" src="https://user-images.githubusercontent.com/98467969/168396555-f55adac4-460e-42a8-ac1d-f69e0020a95e.png" height="300 width="100" />
   <img title="Add guitar page" src="https://user-images.githubusercontent.com/98467969/168396585-031edd53-9fcc-4af0-8c6e-27287081b75e.png" height="300 width="100" />
