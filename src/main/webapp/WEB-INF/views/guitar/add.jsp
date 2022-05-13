@@ -49,12 +49,8 @@
 
                                     </div>
                                     <div class="col-md-6">
-                                        <spring:message code="guitar.stringBrand"/>: <form:select id="stringBrands"
-                                                                                                  itemLabel="brand"
-                                                                                                  cssClass="form-control"
-                                                                                                  items="${brands}"
-                                                                                                  path="stringBrand"/>
-                                        <br>
+                                        <spring:message code="guitar.stringBrand"/>:
+                                        <form:select id="stringBrands" itemLabel="brand" cssClass="form-control" items="${brands}" path="stringBrand"/> <br>
 
                                         <spring:message code="guitar.stringType"/>:
                                         <form:select id="stringTypes" cssClass="form-control" path="stringType"/> <br>

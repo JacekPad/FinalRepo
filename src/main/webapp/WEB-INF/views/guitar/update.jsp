@@ -28,7 +28,7 @@
                         <div class="card">
                             <div class="full graph_head">
                                 <div class="heading1 margin_0">
-                                    <h2>Add guitar</h2>
+                                    <h2>Edit Guitar</h2>
                                 </div>
                             </div>
 
@@ -74,4 +74,5 @@
                         </div>
                     </section>
                 </div>
+                <script src="<c:url value="/resources/js/custom/stringSearch.js"/>"></script>
 <jsp:include page="../constants/footer.jsp"/>
