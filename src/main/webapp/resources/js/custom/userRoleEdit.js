@@ -73,7 +73,7 @@ unlockUserButtons.forEach(button => {
             method: 'PUT'
         }).then(resp => {
             if (!resp.ok) {
-                alert("blad")
+                alert("error")
             }
         })
         userEnabledTable.innerHTML = "Yes";
